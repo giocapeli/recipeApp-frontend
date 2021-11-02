@@ -7,7 +7,7 @@ export default function SearchResultCards(props) {
   const { id } = props;
   const recipe = useSelector(selectSearchResults).filter((e) => e.id === id)[0];
   return (
-    <div className="resultCard">
+    <div className="resultCard shadowBoxCard">
       <div className="titleContainer">
         <h2>{recipe.title}</h2>
       </div>
@@ -16,7 +16,7 @@ export default function SearchResultCards(props) {
       </div>
       <h2>description</h2>
       <Link to={`/recipe/${id}`}>
-        <button>Open Recipe</button>
+        <button className="buttons">Open Recipe</button>
       </Link>
     </div>
   );
