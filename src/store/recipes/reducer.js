@@ -1,19 +1,17 @@
 const initialState = {
   searchResult: [],
   selectedRecipe: {},
+  activeSearch: [],
 };
 export default function recipes(state = initialState, action) {
   switch (action.type) {
+    case "recipe/CLEAR": {
+      return { ...initialState };
+    }
     case "searchResult/NEW": {
       return {
         ...state,
         searchResult: [...action.payload],
-      };
-    }
-    case "searchResult/CLEAR": {
-      return {
-        ...state,
-        searchResult: [],
       };
     }
     case "selectedRecipe/NEW": {
@@ -22,6 +20,13 @@ export default function recipes(state = initialState, action) {
         selectedRecipe: { ...action.payload },
       };
     }
+    case "activeSearch/NEW": {
+      return {
+        ...state,
+        activeSearch: [...action.payload.activeSearch],
+      };
+    }
+
     default: {
       return state;
     }

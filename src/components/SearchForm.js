@@ -12,6 +12,7 @@ export default function SearchForm(props) {
       return;
     }
     searchIt(keywords);
+    set_keywords("");
   }
 
   return (

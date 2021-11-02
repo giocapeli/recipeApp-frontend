@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { selectSearchResults } from "../store/recipes/selectors";
 
 export default function SearchResultCards(props) {
@@ -14,6 +15,9 @@ export default function SearchResultCards(props) {
         <img className="img" alt={recipe.title} src={recipe.imageUrl} />
       </div>
       <h2>description</h2>
+      <Link to={`/recipe/${id}`}>
+        <button>Open Recipe</button>
+      </Link>
     </div>
   );
 }

@@ -1,20 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { clearSearchResults, searchRecipes } from "../store/recipes/actions";
+import { searchRecipes, clearState } from "../store/recipes/actions";
 import SearchForm from "../components/SearchForm";
 import { useSelector } from "react-redux";
-import { selectSearchResults } from "../store/recipes/selectors";
-import { useState, useEffect } from "react";
+import {
+  selectActiveSearch,
+  selectSearchResults,
+} from "../store/recipes/selectors";
+import { useEffect } from "react";
 import SearchResultCards from "../components/SearchResultCards";
 
 export default function Homepage() {
-  const [showSearchForm, set_showSearchForm] = useState(true);
   const dispatch = useDispatch();
   const searchResults = useSelector(selectSearchResults);
-
-  // useEffect(() => {
-  //   dispatch(clearSearchResults);
-  // }, []);
+  const searchKeywords = useSelector(selectActiveSearch);
 
   useEffect(() => {
     console.log("search results", searchResults);
@@ -22,22 +21,39 @@ export default function Homepage() {
 
   function searchIt(keywords) {
     dispatch(searchRecipes(keywords));
-    set_showSearchForm(false);
+  }
+
+  function resetState() {
+    console.log("click");
+    dispatch(clearState(true));
   }
 
   return (
     <div>
-      {showSearchForm ? (
+      {!searchResults.length > 0 ? (
         <div className="searchPage">
-          <SearchForm searchIt={searchIt} />{" "}
+          <SearchForm searchIt={searchIt} />
         </div>
-      ) : null}
-
-      <div className="resultBoard">
-        {searchResults.map((e) => (
-          <SearchResultCards key={e.id} id={e.id} />
-        ))}
-      </div>
+      ) : (
+        <div>
+          {searchKeywords.length ? (
+            <h1>
+              Here the results for {searchKeywords.map((e) => `[${e}] `)}:
+            </h1>
+          ) : null}
+          <div className="resultBoard">
+            {searchResults.map((e) => (
+              <SearchResultCards key={e.id} id={e.id} />
+            ))}
+            <button
+              className="searchButton searchItens"
+              onClick={() => resetState()}
+            >
+              Search Again
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
