@@ -1,7 +1,7 @@
 import React from "react";
 import { selectUser } from "../store/user/selectors";
 import { useSelector } from "react-redux";
-import SearchResultCards from "../components/SearchResultCards";
+import RecipeCard from "../components/RecipeCard";
 
 export default function UserPage() {
   const user = useSelector(selectUser);
@@ -9,28 +9,46 @@ export default function UserPage() {
     return <h1>Please Login</h1>;
   }
   return (
-    <div>
+    <div className="centerPage">
       <h1>{user.name}'s Page</h1>
       <div className="resultBoard">
         <div className="ingredientsCard">
-          <h1>My Favorites</h1>
+          <button className="buttons">
+            <h3>My Favorites</h3>
+          </button>
           {user.favorites.map((e) => (
-            <h1>card</h1>
-            // <SearchResultCards key={e.id} id={e.id} />
+            <RecipeCard
+              id={e.id}
+              title={e.title}
+              ratings={e.ratings}
+              imageUrl={e.imageUrl}
+            />
           ))}
         </div>
         <div className="ingredientsCard">
-          <h1>My Recipes</h1>
+          <button className="buttons">
+            <h3>My Recipes</h3>
+          </button>
           {user.owner.map((e) => (
-            <h1>card</h1>
-            // <SearchResultCards key={e.id} id={e.id} />
+            <RecipeCard
+              id={e.id}
+              title={e.title}
+              ratings={e.ratings}
+              imageUrl={e.imageUrl}
+            />
           ))}
         </div>
         <div className="ingredientsCard">
-          <h1>My Ratings</h1>
+          <button className="buttons">
+            <h3>My Ratings</h3>
+          </button>
           {user.ratings.map((e) => (
-            <h1>card</h1>
-            // <SearchResultCards key={e.id} id={e.id} />
+            <RecipeCard
+              id={e.id}
+              title={e.title}
+              ratings={e.ratings}
+              imageUrl={e.imageUrl}
+            />
           ))}
         </div>
       </div>

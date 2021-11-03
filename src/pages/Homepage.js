@@ -9,6 +9,7 @@ import {
 } from "../store/recipes/selectors";
 import { useEffect } from "react";
 import SearchResultCards from "../components/SearchResultCards";
+import RecipeCard from "../components/RecipeCard";
 
 export default function Homepage() {
   const dispatch = useDispatch();
@@ -43,7 +44,12 @@ export default function Homepage() {
           ) : null}
           <div className="resultBoard">
             {searchResults.map((e) => (
-              <SearchResultCards key={e.id} id={e.id} />
+              <RecipeCard
+                id={e.id}
+                title={e.title}
+                ratings={e.ratings}
+                imageUrl={e.imageUrl}
+              />
             ))}
             <button
               className="searchButton searchItens"
