@@ -18,26 +18,30 @@ export default function Recipe() {
     console.log(recipeData);
   }, []);
 
-  if (!recipeData.recipe) {
+  if (!recipeData.title) {
     return <h1>Loading...</h1>;
   } else {
     return (
       <div className="resultBoard">
         <div className="ingredientsCard shadowBoxCard">
           <h1>Ingredients:</h1>
-          {recipeData.recipe.ingredients.map((e) => (
+          {recipeData.ingredients.map((e) => (
             <h3>{e.name}</h3>
           ))}
         </div>
         <div className="recipeCard">
-          <h1>{recipeData.recipe.title}</h1>
+          <h1>{recipeData.title}</h1>
           <div className="imgContainer">
-            <img className="img" src={recipeData.recipe.imageUrl} />
+            <img
+              className="img"
+              alt={recipeData.title}
+              src={recipeData.imageUrl}
+            />
           </div>
-          <Rating rating={recipeData.rating} />
-          <p>"{recipeData.recipe.description}"</p>
+          <Rating ratings={recipeData.ratings} />
+          <p>"{recipeData.description}"</p>
           <h3>Directions:</h3>
-          <p>{recipeData.recipe.content}</p>
+          <p>{recipeData.content}</p>
         </div>
       </div>
     );
