@@ -5,7 +5,7 @@ import { getRecipeById } from "../store/recipes/actions";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { selectSelectedRecipe } from "../store/recipes/selectors";
-import Rating from "../components/Rating";
+import RatingCard from "../components/RatingCard";
 
 export default function Recipe() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function Recipe() {
     dispatch(getRecipeById(id));
     console.log(recipeData);
   }, []);
-
+  console.log("ID", id);
   if (!recipeData.title) {
     return <h1>Loading...</h1>;
   } else {
@@ -38,7 +38,7 @@ export default function Recipe() {
               src={recipeData.imageUrl}
             />
           </div>
-          <Rating ratings={recipeData.ratings} />
+          <RatingCard ratings={recipeData.ratings} id={id} />
           <p>"{recipeData.description}"</p>
           <h3>Directions:</h3>
           <p>{recipeData.content}</p>

@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Rating from "./Rating";
+import RatingCard from "./RatingCard";
 
 export default function RecipeCard(props) {
   const { id, title, ratings, imageUrl } = props;
+
   return (
     <div className="resultCard shadowBoxCard">
       <div className="titleContainer">
@@ -13,7 +14,7 @@ export default function RecipeCard(props) {
         <div className="imgContainer">
           <img className="img" alt={title} src={imageUrl} />
         </div>
-        <Rating ratings={ratings} />
+        <RatingCard ratings={ratings} id={id} />
         <Link to={`/recipe/${id}`}>
           <button className="buttons">Open Recipe</button>
         </Link>

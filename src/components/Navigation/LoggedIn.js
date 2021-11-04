@@ -10,6 +10,7 @@ export default function LoggedIn() {
   const user = useSelector(selectUser);
   return (
     <>
+      <NavbarItem path="/newrecipe" linkText="Post Recipe" />
       <NavbarItem path="/user" linkText={user.name} />
       <Button onClick={() => dispatch(logOut())}>Logout</Button>
     </>

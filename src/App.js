@@ -14,6 +14,7 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import Homepage from "./pages/Homepage";
 import Recipe from "./pages/Recipe";
 import UserPage from "./pages/UserPage";
+import PostRecipe from "./pages/PostRecipe";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/recipe/:id" component={Recipe} />
         <Route path="/user" component={UserPage} />
+        <Route path="/newrecipe" component={PostRecipe} />
       </Switch>
     </div>
   );
