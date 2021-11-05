@@ -28,6 +28,14 @@ export default function Recipe() {
           {recipeData.ingredients.map((e) => (
             <h3>{`${e.recipe_ingredients.quantity} (${e.recipe_ingredients.unitOfMeasure}) of ${e.name}`}</h3>
           ))}
+          <div style={{ display: "flex" }}>
+            <button style={{ backgroundColor: "#DFFFC8" }} className="buttons">
+              Print
+            </button>
+            <button style={{ backgroundColor: "#DFFFC8" }} className="buttons">
+              Share
+            </button>
+          </div>
         </div>
         <div className="recipeCard">
           <h1>{recipeData.title}</h1>
@@ -38,7 +46,7 @@ export default function Recipe() {
               src={recipeData.imageUrl}
             />
           </div>
-          <RatingCard ratings={recipeData.ratings} id={id} />
+          <RatingCard ratings={recipeData.ratings} id={parseInt(id)} />
           <p>"{recipeData.description}"</p>
           <h3>Directions:</h3>
           <p>{recipeData.content}</p>

@@ -7,7 +7,7 @@ const initialState = {
   ratings: null,
   owner: null,
   favorites: null,
-  postRecipe: { ingredientList: [], recipe: null },
+  postRecipe: { ingredientList: [], recipe: null, imageUrl: null },
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
     case "changeFavorites/NEW": {
       return {
         ...state,
+        favorites: action.payload,
       };
     }
     case "addIngredient/NEW": {
@@ -23,6 +24,27 @@ export default (state = initialState, action) => {
         postRecipe: {
           ...state.postRecipe,
           ingredientList: [...state.postRecipe.ingredientList, action.payload],
+        },
+      };
+    }
+    case "addImage/NEW": {
+      return {
+        ...state,
+        postRecipe: {
+          ...state.postRecipe,
+          imageUrl: action.payload,
+        },
+      };
+    }
+    case "deleteIngredient/DELETE": {
+      const newIngredientList = state.postRecipe.ingredientList.filter(
+        (e) => e.id !== action.payload
+      );
+      return {
+        ...state,
+        postRecipe: {
+          ...state.postRecipe,
+          ingredientList: newIngredientList,
         },
       };
     }

@@ -1,4 +1,5 @@
 import { apiUrl } from "../../config/constants";
+import { cloudinaryUrl } from "../../config/constants";
 import axios from "axios";
 import { selectToken } from "./selectors";
 import {
@@ -143,7 +144,8 @@ export const getUserWithStoredToken = () => {
 };
 export function postRecipe(recipe) {
   return async function thunk(dispatch, getState) {
-    const body = recipe;
+    const userId = getState().user.id;
+    const body = { ...recipe, userId };
     try {
       const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body);
       console.log(response.data);
@@ -169,6 +171,7 @@ export function checkIngredient(ingredientData) {
         name: response.data.ingredientData.name,
         quantity,
         unitOfMeasure,
+        id: Math.random(),
       };
       dispatch(sendIngredient(newIngredient));
       console.log(response.data);
@@ -185,5 +188,38 @@ export function sendIngredient(ingredientData) {
   return {
     type: "addIngredient/NEW",
     payload: ingredientData,
+  };
+}
+export function sendDeletedIngredient(id) {
+  return {
+    type: "deleteIngredient/DELETE",
+    payload: id,
+  };
+}
+
+//https://api.cloudinary.com/v1_1/<cloud name>/<resource_type>/upload
+
+export function postImage(files) {
+  return async function thunk(dispatch, getState) {
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "mz6yjao2");
+    try {
+      const response = await axios.post(`${cloudinaryUrl}`, data);
+      console.log("Cloudinary Response:", response.data.url);
+      dispatch(sendImageUrl(response.data.url));
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
+  };
+}
+export function sendImageUrl(url) {
+  return {
+    type: "addImage/NEW",
+    payload: url,
   };
 }
