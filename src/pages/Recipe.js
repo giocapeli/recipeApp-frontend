@@ -26,7 +26,7 @@ export default function Recipe() {
         <div className="ingredientsCard shadowBoxCard">
           <h1>Ingredients:</h1>
           {recipeData.ingredients.map((e) => (
-            <h3>{e.name}</h3>
+            <h3>{`${e.recipe_ingredients.quantity} (${e.recipe_ingredients.unitOfMeasure}) of ${e.name}`}</h3>
           ))}
         </div>
         <div className="recipeCard">

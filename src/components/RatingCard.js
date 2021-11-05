@@ -50,8 +50,6 @@ export default function RatingCard(props) {
     if (favorites !== null) {
       checkFavorite();
     }
-    console.log(props.ratings);
-    console.log("owner", owner);
   }, [favorites, props.ratings]);
 
   return (

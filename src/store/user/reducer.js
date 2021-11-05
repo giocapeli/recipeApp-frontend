@@ -7,6 +7,7 @@ const initialState = {
   ratings: null,
   owner: null,
   favorites: null,
+  postRecipe: { ingredientList: [], recipe: null },
 };
 
 export default (state = initialState, action) => {
@@ -14,10 +15,17 @@ export default (state = initialState, action) => {
     case "changeFavorites/NEW": {
       return {
         ...state,
-        favorites: [...action.payload],
       };
     }
-
+    case "addIngredient/NEW": {
+      return {
+        ...state,
+        postRecipe: {
+          ...state.postRecipe,
+          ingredientList: [...state.postRecipe.ingredientList, action.payload],
+        },
+      };
+    }
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };

@@ -141,3 +141,49 @@ export const getUserWithStoredToken = () => {
     }
   };
 };
+export function postRecipe(recipe) {
+  return async function thunk(dispatch, getState) {
+    const body = recipe;
+    try {
+      const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body);
+      console.log(response.data);
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
+  };
+}
+export function checkIngredient(ingredientData) {
+  const body = { name: ingredientData.name };
+  const { quantity, unitOfMeasure } = ingredientData;
+  return async function thunk(dispatch, getState) {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/recipe/checkingredient`,
+        body
+      );
+      const newIngredient = {
+        name: response.data.ingredientData.name,
+        quantity,
+        unitOfMeasure,
+      };
+      dispatch(sendIngredient(newIngredient));
+      console.log(response.data);
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
+  };
+}
+export function sendIngredient(ingredientData) {
+  return {
+    type: "addIngredient/NEW",
+    payload: ingredientData,
+  };
+}

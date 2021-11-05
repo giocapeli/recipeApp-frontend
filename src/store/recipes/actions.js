@@ -68,37 +68,3 @@ export function ratingRecipe(recipeId, rating) {
     }
   };
 }
-export function postRecipe(recipe) {
-  return async function thunk(dispatch, getState) {
-    const body = recipe;
-    try {
-      const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body);
-      console.log(response.data);
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-      } else {
-        console.log(e.message);
-      }
-    }
-  };
-}
-export function checkIngredient(ingredient) {
-  const body = { name: ingredient };
-  return async function thunk(dispatch, getState) {
-    try {
-      const response = await axios.post(
-        `${apiUrl}/recipe/checkingredient`,
-        body
-      );
-      console.log(ingredient);
-      console.log(response.data);
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-      } else {
-        console.log(e.message);
-      }
-    }
-  };
-}

@@ -4,7 +4,7 @@ import NotLogged from "../components/NotLogged";
 import { selectToken } from "../store/user/selectors";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { checkIngredient, postRecipe } from "../store/recipes/actions";
+import { checkIngredient, postRecipe } from "../store/user/actions";
 
 export default function PostRecipe() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function PostRecipe() {
   const initialStateNewIngredient = {
     name: "",
     quantity: "",
-    unitMeasure: "unit",
+    unitOfMeasure: "unit",
   };
 
   const [newRecipe, set_newRecipe] = useState(initialStateNewRecipe);
@@ -46,9 +46,8 @@ export default function PostRecipe() {
 
   function pushIngredient(event) {
     event.preventDefault();
-    dispatch(checkIngredient(newIngredient.name));
+    dispatch(checkIngredient(newIngredient));
     set_ingredientList([...ingredientList, newIngredient]);
-    console.log(ingredientList);
   }
   function deleteIngredient(i) {
     set_ingredientList(
@@ -97,7 +96,7 @@ export default function PostRecipe() {
               onChange={(event) =>
                 set_newIngredient({
                   ...newIngredient,
-                  unitMeasure: event.target.value,
+                  unitOfMeasure: event.target.value,
                 })
               }
             >
@@ -129,7 +128,7 @@ export default function PostRecipe() {
         <div>
           {ingredientList.map((e, i) => (
             <div key={i} className="itemList">
-              <p>{`${e.quantity} (${e.unitMeasure}) of ${e.name}`}</p>
+              <p>{`${e.quantity} (${e.unitOfMeasure}) of ${e.name}`}</p>
 
               <button
                 className="deleteButton"
