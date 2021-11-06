@@ -3,6 +3,7 @@ import { selectUser } from "../store/user/selectors";
 import { useSelector } from "react-redux";
 import RecipeCard from "../components/RecipeCard";
 import { useState } from "react";
+import Loading from "../components/Loading";
 
 export default function UserPage() {
   const initialToggleMenu = {
@@ -18,7 +19,7 @@ export default function UserPage() {
   }
 
   if (!user.favorites) {
-    return <h1>Loading</h1>;
+    return <Loading />;
   }
 
   return (

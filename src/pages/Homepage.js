@@ -32,7 +32,7 @@ export default function Homepage() {
   return (
     <div>
       {!searchResults.length > 0 ? (
-        <div className="searchPage">
+        <div className="centered">
           <SearchForm searchIt={searchIt} />
         </div>
       ) : (

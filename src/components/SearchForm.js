@@ -19,14 +19,17 @@ export default function SearchForm(props) {
     <div>
       <form onSubmit={sendResults}>
         <h1 className="pageTitle">What I have in my fridge:</h1>
-        <input
-          className="searchInput searchItens"
-          type="search"
-          placeholder="Eggs, Tomatoes, Pasta"
-          aria-label="Search Recipes"
-          value={keywords}
-          onChange={(event) => set_keywords(event.target.value)}
-        />
+        <div>
+          <input
+            className="searchItens"
+            type="search"
+            placeholder="Eggs, Tomatoes, Pasta"
+            aria-label="Search Recipes"
+            value={keywords}
+            onChange={(event) => set_keywords(event.target.value)}
+          />
+        </div>
+
         <br />
         <button className="searchButton searchItens" type="submit">
           What Should I Cook?

@@ -3,7 +3,6 @@ import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
-import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -15,6 +14,7 @@ import Homepage from "./pages/Homepage";
 import Recipe from "./pages/Recipe";
 import UserPage from "./pages/UserPage";
 import PostRecipe from "./pages/PostRecipe";
+import Loading from "./components/Loading";
 
 function App() {
   const dispatch = useDispatch();
