@@ -49,15 +49,15 @@ export default function user(state = initialState, action) {
         },
       };
     }
-    // case "addImage/NEW": {
-    //   return {
-    //     ...state,
-    //     postRecipe: {
-    //       ...state.postRecipe,
-    //       imageUrl: action.payload,
-    //     },
-    //   };
-    // }
+    case "addImage/NEW": {
+      return {
+        ...state,
+        postRecipe: {
+          ...state.postRecipe,
+          imageUrl: action.payload,
+        },
+      };
+    }
     // case "deleteIngredient/DELETE": {
     //   const newIngredientList = state.postRecipe.ingredientList.filter(
     //     (e) => e.id !== action.payload

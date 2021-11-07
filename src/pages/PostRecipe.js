@@ -43,6 +43,13 @@ export default function PostRecipe() {
   };
 
   const [newRecipe, set_newRecipe] = useState(initialStateNewRecipe);
+  useEffect(() => {
+    set_newRecipe({
+      ...newRecipe,
+      imageUrl: postRecipeState.imageUrl,
+    });
+  }, [postRecipeState]);
+
   const [newIngredient, set_newIngredient] = useState(
     initialStateNewIngredient
   );
@@ -193,19 +200,21 @@ export default function PostRecipe() {
               />
               <br />
               {/* <h1>Image</h1> */}
-              <input
-                type="text"
-                required
-                className="forminput"
-                placeholder="A nice picture of your Recipe (URL)"
-                value={newRecipe.imageUrl}
-                onChange={(event) =>
-                  set_newRecipe({
-                    ...newRecipe,
-                    imageUrl: event.target.value,
-                  })
-                }
-              />
+              {!postRecipeState.imageUrl ? (
+                <input
+                  type="text"
+                  required
+                  className="forminput"
+                  placeholder="A nice picture of your Recipe (URL)"
+                  value={newRecipe.imageUrl}
+                  onChange={(event) =>
+                    set_newRecipe({
+                      ...newRecipe,
+                      imageUrl: event.target.value,
+                    })
+                  }
+                />
+              ) : null}
               <br />
               {/* <h1>Description</h1> */}
               <input

@@ -31,31 +31,7 @@ export function postRecipe(recipe) {
   };
 }
 
-export function postImage(files) {
-  return async function thunk(dispatch, getState) {
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "mz6yjao2");
-    try {
-      const response = await axios.post(`${cloudinaryUrl}`, data);
-      console.log("Cloudinary Response:", response.data.url);
-      dispatch(sendImageUrl(response.data.url));
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-      } else {
-        console.log(e.message);
-      }
-    }
-  };
-}
-export function sendImageUrl(url) {
-  return {
-    type: "addImage/NEW",
-    payload: url,
-  };
-}
-//LOGIN
+//////////////////////LOGIN
 export function loginSuccess(userWithToken) {
   return {
     type: "LOGIN_SUCCESS",
@@ -160,7 +136,8 @@ export function actionTest(test) {
     payload: test,
   };
 }
-//Favorite
+
+//////////////////////Revised
 export function sendFavoriteRecipe(newFavorites) {
   return {
     type: "changeFavorites/NEW",
@@ -205,5 +182,30 @@ export function sendDeletedIngredient(ingredientData) {
   return {
     type: "ingredient/DELETE",
     payload: ingredientData,
+  };
+}
+//Post Image
+export function postImage(files) {
+  return async function thunk(dispatch, getState) {
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "mz6yjao2");
+    try {
+      const response = await axios.post(`${cloudinaryUrl}`, data);
+      console.log("Cloudinary Response:", response.data.url);
+      dispatch(sendImageUrl(response.data.url));
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
+  };
+}
+export function sendImageUrl(url) {
+  return {
+    type: "addImage/NEW",
+    payload: url,
   };
 }
