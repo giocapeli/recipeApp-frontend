@@ -11,7 +11,7 @@ export default function RecipeCard(props) {
         <h2>{title}</h2>
       </div>
       <div>
-        <div className="imgContainer">
+        <div className="imgContainer" style={{ height: "300px" }}>
           <img className="img" alt={title} src={imageUrl} />
         </div>
         <RatingCard ratings={ratings} id={id} />

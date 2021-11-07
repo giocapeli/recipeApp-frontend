@@ -1,0 +1,64 @@
+.my-navbar {
+  text-decoration: none;
+  color: #bdbdbd;
+  padding: 15px;
+  font-family: "Mali", cursive;
+  font-size: 2em;
+  background-color: rgb(43, 43, 43);
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 0;
+}
+.navbar-link,
+.show-navbar-button {
+  font-weight: 300;
+  float: left;
+  color: #8a8a8a;
+  text-align: center;
+  margin: 10px 15px;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.show-navbar-button {
+  padding: 10px;
+}
+.navbar-link:hover,
+.show-navbar-button:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+.navbar-link:active {
+  color: #474747;
+  font-weight: 500;
+  text-decoration: none;
+}
+.show-navbar-button {
+  display: none;
+}
+@media screen and (max-width: 865px) {
+  .navbar-link.hide {
+    display: none;
+  }
+  .navbar-link {
+    display: block;
+    margin-bottom: 30px;
+    float: none;
+  }
+  .my-navbar {
+    display: block;
+    float: none;
+  }
+
+  .show-navbar-button {
+    font-size: 0.8em;
+    margin: 0px;
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: block;
+  }
+}

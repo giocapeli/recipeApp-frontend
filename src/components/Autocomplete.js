@@ -8,15 +8,15 @@ export default function Autocomplete(props) {
 
   const [typed, set_typed] = useState("");
   const [suggestions, set_suggestions] = useState([]);
-  const [selected, set_selecter] = useState("");
+  const [selected, set_selected] = useState({});
 
   useEffect(() => {
-    console.log(typed);
+    //console.log(typed);
     if (typed !== "") {
       const newArray = props.array.filter(
         (e) => e.name.toLowerCase().indexOf(typed.toLowerCase()) > -1
       );
-      console.log(newArray);
+      //console.log(newArray);
 
       set_suggestions(newArray);
     } else {
@@ -26,15 +26,18 @@ export default function Autocomplete(props) {
 
   const [found, set_found] = useState(false);
   function clickOnElement(e) {
-    set_selecter(e.name);
-    //props.action(e);
+    set_selected({ name: e.name, found: true, id: e.id });
     set_suggestions([]);
     set_found(true);
   }
+  useEffect(() => {
+    if (found) {
+      props.action(selected);
+    }
+  }, [selected]);
 
   return (
     <div>
-      {/* <h1>Autocomplete</h1> */}
       {!found ? (
         <div>
           <input
@@ -43,36 +46,39 @@ export default function Autocomplete(props) {
             placeholder="Search by Name"
             onChange={(event) => set_typed(event.target.value)}
           />
-          <button
-            onClick={() => {
-              set_found(true);
-              set_selecter(typed);
-            }}
-            className="deleteButton"
-            style={{ backgroundColor: "green" }}
-          >
-            +
-          </button>
+          {suggestions.length === 0 && typed !== "" ? (
+            <p
+              onClick={() => {
+                set_found(true);
+                set_selected({ name: typed, found: false, id: Math.random() });
+              }}
+              className="deleteButton"
+              style={{ backgroundColor: "green" }}
+            >
+              +
+            </p>
+          ) : null}
         </div>
       ) : (
         <div>
-          {selected}
-          <button className="deleteButton" onClick={() => set_found(false)}>
+          {selected.name}
+          <p className="deleteButton" onClick={() => set_found(false)}>
             x
-          </button>
+          </p>
         </div>
       )}
-
-      <div className="autocompleteForm">
-        {suggestions.map((e) => (
-          <div
-            className="autompleteSugestion"
-            onClick={() => clickOnElement(e)}
-          >
-            {e.name}
-          </div>
-        ))}
-      </div>
+      {!found ? (
+        <div className="autocompleteForm">
+          {suggestions.map((e) => (
+            <div
+              className="autompleteSugestion"
+              onClick={() => clickOnElement(e)}
+            >
+              {e.name}
+            </div>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }

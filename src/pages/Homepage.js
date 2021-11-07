@@ -8,7 +8,6 @@ import {
   selectSearchResults,
 } from "../store/recipes/selectors";
 import { useEffect } from "react";
-import SearchResultCards from "../components/SearchResultCards";
 import RecipeCard from "../components/RecipeCard";
 
 export default function Homepage() {
@@ -42,7 +41,7 @@ export default function Homepage() {
               Here the results for {searchKeywords.map((e) => `[${e}] `)}:
             </h1>
           ) : null}
-          <div className="resultBoard">
+          <div className="layout">
             {searchResults.map((e) => (
               <RecipeCard
                 id={e.id}

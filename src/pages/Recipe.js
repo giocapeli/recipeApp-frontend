@@ -49,7 +49,7 @@ export default function Recipe() {
         </div>
         <div className="recipeCard">
           <h1>{recipeData.title}</h1>
-          <div className="imgContainer">
+          <div className="container" style={{ height: "300px" }}>
             <img
               className="img"
               alt={recipeData.title}

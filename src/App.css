@@ -1,54 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Nanum+Pen+Script&family=Rancho&display=swap");
+/* font-family: 'Mali', cursive;
+font-family: 'Nanum Pen Script', cursive;
+font-family: 'Rancho', cursive; */
+
 .searchItens {
   padding: 10px 15px;
-  width: 80%;
+  width: 100%;
   border: 0px;
   text-align: center;
 }
 
-.centerPage {
+/* .centerPage {
   padding-top: 50px;
   text-align: center;
-}
+} */
 
 .pageTitle {
-  font-size: 2.5em;
   margin: 20px;
   color: rgb(77, 77, 77);
-}
-
-.resultCard {
-  text-align: center;
-  width: 300px;
-  margin: 20px;
-}
-
-.imgContainer {
-  margin: auto;
-  overflow: hidden;
-  height: 300px;
-  width: 100%;
-}
-.titleContainer {
-  padding: 10px;
-  margin: auto;
-}
-.img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
 }
 
 .resultBoard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.recipeCard {
-  margin: 20px;
-  padding: 10px;
-  width: 60%;
-  min-width: 350px;
 }
 
 .ingredientsCard {
@@ -61,11 +36,10 @@
 }
 .buttons {
   padding: 10px;
-  width: 90%;
+  width: 95%;
   border: 0px;
   background-color: rgb(255, 255, 255);
   color: rgb(51, 97, 59);
-  margin: 5%;
 }
 
 .searchButton {
@@ -90,13 +64,11 @@
   display: flex;
   /* justify-content: flex-end; */
   height: 100%;
-  font-size: 14pt;
   font-weight: normal;
 }
 .autompleteSugestion {
   padding: 3px 20px;
   margin: 5px 0px;
-  font-size: 12pt;
 }
 .autompleteSugestion:hover {
   outline-color: rgb(143, 218, 255);
@@ -111,6 +83,7 @@
   padding: 15px;
 }
 .centered {
+  width: 550px;
   text-align: center;
   position: fixed;
   top: 50%;
@@ -146,7 +119,8 @@
 .box,
 .pop-up,
 .forminput,
-.buttons {
+.buttons,
+.resultCard {
   border: 0px;
   overflow: hidden;
   border-radius: 10px;
@@ -171,7 +145,8 @@
 .box,
 .pop-up,
 .autocompleteForm,
-.forminput {
+.forminput,
+.resultCard {
   box-shadow: 3px 3px 10px rgba(32, 32, 32, 0.425);
 }
 /* Switch */
@@ -205,4 +180,75 @@
   width: 100%;
   height: 100%;
   background-color: rgba(70, 70, 70, 0.685);
+}
+.resultCard {
+  text-align: center;
+  width: 300px;
+  /* margin: 10px; */
+  font-size: 14pt;
+}
+.container {
+  margin: 0px;
+  overflow: hidden;
+  /* height: 0; */
+  /* position: relative; */
+}
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+/* .container-content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+.position-bottom {
+  position: absolute;
+  bottom: 10px;
+  transform: translate(-50%, 0%);
+}
+.favorite {
+  position: absolute;
+  top: 0;
+  left: 55%;
+  object-fit: cover;
+}
+.recipeCard {
+  margin: 20px;
+  padding: 10px;
+  width: 60%;
+  min-width: 350px;
+}
+
+.column-1 {
+  flex-grow: 1;
+}
+.column-2 {
+  flex-grow: 2;
+  height: 600px;
+}
+.column-1,
+.column-2 {
+  background-color: black;
+  min-width: 300px;
+}
+.layout {
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  align-content: flex-end;
+}
+/* NAVBAR */
+a {
+  text-decoration: line-through;
+}
+@media screen and (max-width: 600px) {
+  .centered {
+    width: 90%;
+  }
 }

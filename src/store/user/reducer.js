@@ -1,5 +1,3 @@
-import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID } from "./actions";
-
 const initialState = {
   token: localStorage.getItem("token"),
   name: null,
@@ -7,10 +5,14 @@ const initialState = {
   ratings: null,
   owner: null,
   favorites: null,
-  postRecipe: { ingredientList: [], recipe: null, imageUrl: null },
+  postRecipe: {
+    ingredientList: [],
+    recipe: null,
+    imageUrl: null,
+  },
 };
 
-export default (state = initialState, action) => {
+export default function user(state = initialState, action) {
   switch (action.type) {
     case "changeFavorites/NEW": {
       return {
@@ -18,7 +20,16 @@ export default (state = initialState, action) => {
         favorites: action.payload,
       };
     }
-    case "addIngredient/NEW": {
+    // case "addIngredient/CREATE": {
+    //   return {
+    //     ...state,
+    //     postRecipe: {
+    //       ...state.postRecipe,
+    //       ingredientList: [...state.postRecipe.ingredientList, action.payload],
+    //     },
+    //   };
+    // }
+    case "ingredient/NEW": {
       return {
         ...state,
         postRecipe: {
@@ -27,39 +38,56 @@ export default (state = initialState, action) => {
         },
       };
     }
-    case "addImage/NEW": {
+    case "ingredient/DELETE": {
       return {
         ...state,
         postRecipe: {
           ...state.postRecipe,
-          imageUrl: action.payload,
+          ingredientList: state.postRecipe.ingredientList.filter(
+            (e) => e.id !== action.payload.id
+          ),
         },
       };
     }
-    case "deleteIngredient/DELETE": {
-      const newIngredientList = state.postRecipe.ingredientList.filter(
-        (e) => e.id !== action.payload
-      );
-      return {
-        ...state,
-        postRecipe: {
-          ...state.postRecipe,
-          ingredientList: newIngredientList,
-        },
-      };
-    }
-    case LOGIN_SUCCESS:
+    // case "addImage/NEW": {
+    //   return {
+    //     ...state,
+    //     postRecipe: {
+    //       ...state.postRecipe,
+    //       imageUrl: action.payload,
+    //     },
+    //   };
+    // }
+    // case "deleteIngredient/DELETE": {
+    //   const newIngredientList = state.postRecipe.ingredientList.filter(
+    //     (e) => e.id !== action.payload
+    //   );
+    //   return {
+    //     ...state,
+    //     postRecipe: {
+    //       ...state.postRecipe,
+    //       ingredientList: newIngredientList,
+    //     },
+    //   };
+    // }
+    case "LOGIN_SUCCESS": {
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };
+    }
 
-    case LOG_OUT:
+    case "LOG_OUT": {
       localStorage.removeItem("token");
       return { ...initialState, token: null };
+    }
 
-    case TOKEN_STILL_VALID:
+    case "TOKEN_STILL_VALID": {
       return { ...state, ...action.payload };
-
-    default:
+    }
+    case "test/NEW": {
+      return { ...state, favorites: action.payload };
+    }
+    default: {
       return state;
+    }
   }
-};
+}

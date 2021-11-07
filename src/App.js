@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -15,6 +14,8 @@ import Recipe from "./pages/Recipe";
 import UserPage from "./pages/UserPage";
 import PostRecipe from "./pages/PostRecipe";
 import Loading from "./components/Loading";
+import Layout from "./pages/Layout";
+import Navbar from "./components/Navigation/Navbar";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
+      {/* <Navigation /> */}
+      <Navbar />
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
@@ -36,6 +38,7 @@ function App() {
         <Route path="/recipe/:id" component={Recipe} />
         <Route path="/user" component={UserPage} />
         <Route path="/newrecipe" component={PostRecipe} />
+        <Route path="/layout" component={Layout} />
       </Switch>
     </div>
   );
