@@ -63,19 +63,21 @@ font-family: 'Rancho', cursive; */
   height: 100%;
   font-weight: normal;
 }
-.autompleteSugestion {
+.autocompleteSugestion {
   width: 100%;
-  padding: 3px 20px;
-  margin: 5px 0px;
+  padding: 5px 20px;
+  margin: 0px 0px;
 }
-.autompleteSugestion:hover {
+.autocompleteSugestion:hover {
   outline-color: rgb(143, 218, 255);
-  background-color: rgb(194, 230, 185);
+  color: white;
+  background-color: rgb(189, 189, 189);
 }
 .autocompleteForm {
   position: absolute;
   width: 100%;
-
+  /* padding: 20px 0px; */
+  margin-top: 5px;
   background-color: white;
 }
 /* Pop-up */
@@ -124,7 +126,8 @@ font-family: 'Rancho', cursive; */
 .side-button,
 .ingredient-card,
 .card,
-.ingredientsCard {
+.ingredientsCard,
+.autocompleteForm {
   border: 0px;
   overflow: hidden;
   border-radius: 10px;
@@ -132,29 +135,28 @@ font-family: 'Rancho', cursive; */
 /* Border Rounded */
 .exit-button,
 .switch,
-.searchItens,
-.autompleteSugestion {
+.searchItens {
   border: 0px;
   overflow: hidden;
   border-radius: 100px;
 }
-/* Shadow light*/
+/* Shadow intern*/
 .switch,
-.exit-button,
 .searchItens,
-.buttons,
-.side-button {
-  box-shadow: 3px 3px 10px rgba(139, 139, 139, 0.425);
+.form-input {
+  box-shadow: inset 1px 1px 3px rgba(26, 26, 26, 0.432);
 }
 /* Shadow medium */
 .box,
 .pop-up,
 .autocompleteForm,
-.form-input,
+.side-button,
+.exit-button,
+.buttons,
 .resultCard,
 .card,
 .ingredientsCard {
-  box-shadow: 3px 3px 10px rgba(32, 32, 32, 0.425);
+  box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432);
 }
 /* Switch */
 .switch {
@@ -303,4 +305,25 @@ input[type="file"] {
 }
 .title {
   margin-top: 20px;
+}
+h1,
+h2 {
+  font-family: "Mali", cursive;
+  /* font-family: "Nanum Pen Script", cursive; */
+  /* font-family: "Rancho", cursive; */
+}
+h4,
+h3 {
+  /* font-family: "Mali", cursive; */
+  font-family: "Nanum Pen Script", cursive;
+  /* font-family: "Rancho", cursive; */
+}
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.quote {
+  /* font-family: "Rancho", cursive; */
+  font-family: "Mali", cursive;
+  /* font-weight: lighter; */
+  font-size: 12pt;
 }

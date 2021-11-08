@@ -56,8 +56,13 @@ export function ratingRecipe(recipeId, rating) {
   return async function thunk(dispatch, getState) {
     const userId = getState().user.id;
     const body = { recipeId, userId, rating };
+    const token = getState().user.token;
+    const headers = { Authorization: `Bearer ${token}` };
+
     try {
-      const response = await axios.patch(`${apiUrl}/recipe/rating/`, body);
+      const response = await axios.patch(`${apiUrl}/recipe/rating/`, body, {
+        headers,
+      });
       console.log(response.data);
     } catch (e) {
       if (e.response) {

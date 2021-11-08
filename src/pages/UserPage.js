@@ -27,8 +27,7 @@ export default function UserPage() {
       <h1 className="title">{user.name}'s Page</h1>
       <div className="resultBoard">
         <div className="ingredientsCard">
-          <h3
-            // className="buttons file"
+          <h2
             style={{ marginBottom: "25px" }}
             onClick={() =>
               set_toggleMenu({
@@ -38,7 +37,7 @@ export default function UserPage() {
             }
           >
             My Favorites
-          </h3>
+          </h2>
           {toggleMenu.favorites
             ? user.favorites.map((e) => (
                 <div style={{ marginBottom: "20px" }}>
@@ -53,8 +52,7 @@ export default function UserPage() {
             : null}
         </div>
         <div className="ingredientsCard">
-          <h3
-            // className="buttons file"
+          <h2
             style={{ marginBottom: "25px" }}
             onClick={() =>
               set_toggleMenu({
@@ -64,7 +62,7 @@ export default function UserPage() {
             }
           >
             My Recipes
-          </h3>
+          </h2>
           {toggleMenu.my
             ? user.owner.map((e) => (
                 <div style={{ marginBottom: "20px" }}>
@@ -79,9 +77,8 @@ export default function UserPage() {
             : null}
         </div>
         <div className="ingredientsCard">
-          <h3
+          <h2
             style={{ marginBottom: "25px" }}
-            // className="buttons file"
             onClick={() =>
               set_toggleMenu({
                 ...toggleMenu,
@@ -90,7 +87,7 @@ export default function UserPage() {
             }
           >
             My Ratings
-          </h3>
+          </h2>
           {toggleMenu.ratings
             ? user.ratings.map((e) => (
                 <div style={{ marginBottom: "20px" }}>

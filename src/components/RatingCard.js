@@ -27,11 +27,9 @@ export default function RatingCard(props) {
   }
 
   function ratingIt(newValue) {
-    console.log("ratingIt", props.id, newValue);
     dispatch(ratingRecipe(props.id, newValue));
   }
   function favoriteIt(newValue) {
-    console.log("favorite", props.id, newValue);
     dispatch(favoriteRecipe(props.id));
   }
   function changingStars(event, newValue) {

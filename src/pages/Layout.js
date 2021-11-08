@@ -2,13 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipeById } from "../store/recipes/actions";
-import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { selectSelectedRecipe } from "../store/recipes/selectors";
 import RatingCard from "../components/RatingCard";
 import ShareCard from "../components/ShareCard";
 import Loading from "../components/Loading";
-import { width } from "@mui/system";
 
 export default function Recipe() {
   const dispatch = useDispatch();
@@ -19,9 +17,7 @@ export default function Recipe() {
 
   useEffect(() => {
     dispatch(getRecipeById(id));
-    console.log(recipeData);
   }, []);
-  console.log("ID", id);
 
   if (!recipeData) {
     return <Loading />;

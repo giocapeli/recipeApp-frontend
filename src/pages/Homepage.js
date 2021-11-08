@@ -7,17 +7,12 @@ import {
   selectActiveSearch,
   selectSearchResults,
 } from "../store/recipes/selectors";
-import { useEffect } from "react";
 import RecipeCard from "../components/RecipeCard";
 
 export default function Homepage() {
   const dispatch = useDispatch();
   const searchResults = useSelector(selectSearchResults);
   const searchKeywords = useSelector(selectActiveSearch);
-
-  useEffect(() => {
-    console.log("search results", searchResults);
-  }, [searchResults]);
 
   function searchIt(keywords) {
     dispatch(searchRecipes(keywords));
@@ -30,7 +25,7 @@ export default function Homepage() {
   return (
     <div style={{ textAlign: "center" }}>
       {!searchResults.length > 0 ? (
-        <div className="centered" style={{ margin: "0px" }}>
+        <div className="centered">
           <SearchForm searchIt={searchIt} />
         </div>
       ) : (

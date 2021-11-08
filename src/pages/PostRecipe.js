@@ -53,9 +53,7 @@ export default function PostRecipe() {
   const [newIngredient, set_newIngredient] = useState(
     initialStateNewIngredient
   );
-  // useEffect(() => {
-  //   console.log(newIngredient);
-  // }, [newIngredient]);
+
   const ingredientList = useSelector(selectIngredientList);
 
   const token = useSelector(selectToken);
@@ -69,13 +67,11 @@ export default function PostRecipe() {
       console.log("Please fill the ingredient list");
       return;
     }
-    console.log("submit", newRecipe);
     dispatch(postRecipe(newRecipe));
     set_newRecipe(initialStateNewRecipe);
     set_newIngredient(initialStateNewIngredient);
   }
   function pushIngredient() {
-    console.log(newIngredient);
     if (
       newIngredient.name &&
       newIngredient.quantity &&
@@ -93,12 +89,10 @@ export default function PostRecipe() {
     }
   }
   function deleteIngredient(e) {
-    console.log(e);
     dispatch(sendDeletedIngredient(e));
   }
 
   function uploadImage(e) {
-    console.log("Uploading", e.target.files);
     if (e.target.files) {
       const files = e.target.files;
       dispatch(postImage(files));
@@ -119,7 +113,7 @@ export default function PostRecipe() {
       <div className="layout">
         <div className="column-1">
           <div className="card">
-            <h3 className="title">Ingredients:</h3>
+            <h2 className="title">Ingredients:</h2>
             <div>
               <form
                 // className="resultBoard"
@@ -134,7 +128,7 @@ export default function PostRecipe() {
                     action={selectIngredient}
                   />
                 ) : (
-                  <div>
+                  <div style={{ display: "flex" }}>
                     <h4 className="form-input">{newIngredient.name}</h4>
                     <div
                       onClick={() => {
@@ -222,7 +216,7 @@ export default function PostRecipe() {
         </div>
         <div className="column-2">
           <div className="card">
-            <h3 className="title">Information:</h3>
+            <h2 className="title">Information:</h2>
             <form onSubmit={submitRecipe}>
               <input
                 type="string"
@@ -250,7 +244,7 @@ export default function PostRecipe() {
                   })
                 }
               />
-              <h3 className="title">Upload Image:</h3>
+              <h2 className="title">Upload Image:</h2>
               <label className="buttons file">
                 <input type="file" onChange={uploadImage} />
                 Choose a picture of your recipe!

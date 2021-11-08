@@ -19,7 +19,6 @@ export default function Menu() {
   }
   function reportWindowSize() {
     setshow(false);
-    // const width = window.innerWidth;
   }
   function resetState() {
     dispatch(clearState(true));
