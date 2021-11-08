@@ -21,7 +21,7 @@ export default function SearchForm(props) {
         <h1 className="pageTitle">What I have in my fridge:</h1>
         <div>
           <input
-            className="searchItens"
+            className="form-input"
             type="search"
             placeholder="Eggs, Tomatoes, Pasta"
             aria-label="Search Recipes"
@@ -31,7 +31,7 @@ export default function SearchForm(props) {
         </div>
 
         <br />
-        <button className="searchButton searchItens" type="submit">
+        <button className="buttons" type="submit">
           What Should I Cook?
         </button>
       </form>

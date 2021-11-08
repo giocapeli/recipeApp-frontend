@@ -41,7 +41,7 @@ export default function PostRecipe() {
     unitOfMeasure: "unit",
     id: "",
   };
-
+  const [autocomplete, set_autocomplete] = useState(true);
   const [newRecipe, set_newRecipe] = useState(initialStateNewRecipe);
   useEffect(() => {
     set_newRecipe({
@@ -53,9 +53,9 @@ export default function PostRecipe() {
   const [newIngredient, set_newIngredient] = useState(
     initialStateNewIngredient
   );
-  useEffect(() => {
-    console.log(newIngredient);
-  }, [newIngredient]);
+  // useEffect(() => {
+  //   console.log(newIngredient);
+  // }, [newIngredient]);
   const ingredientList = useSelector(selectIngredientList);
 
   const token = useSelector(selectToken);
@@ -74,10 +74,23 @@ export default function PostRecipe() {
     set_newRecipe(initialStateNewRecipe);
     set_newIngredient(initialStateNewIngredient);
   }
-
   function pushIngredient() {
-    //event.preventDefault();
-    dispatch(sendIngredient(newIngredient));
+    console.log(newIngredient);
+    if (
+      newIngredient.name &&
+      newIngredient.quantity &&
+      newIngredient.unitOfMeasure
+    ) {
+      if (ingredientList.length) {
+        ingredientList.find((e) => {
+          if (e.name === newIngredient.name) {
+            dispatch(sendDeletedIngredient(e));
+          }
+        });
+      }
+      dispatch(sendIngredient(newIngredient));
+      set_autocomplete(true);
+    }
   }
   function deleteIngredient(e) {
     console.log(e);
@@ -92,103 +105,129 @@ export default function PostRecipe() {
     }
   }
   function selectIngredient(item) {
-    set_newIngredient({
-      ...newIngredient,
-      ...item,
-    });
+    if (item.name) {
+      set_newIngredient({
+        ...newIngredient,
+        ...item,
+      });
+      set_autocomplete(false);
+    }
   }
-
   return (
-    <div className="resultBoard">
-      <div className="ingredientsCard shadowBoxCard">
-        <h1>Ingredients:</h1>
-        <div>
-          <form
-            className="resultBoard"
-            onSubmit={(event) => {
-              event.preventDefault();
-              pushIngredient();
-            }}
-          >
-            <Autocomplete array={allIngredients} action={selectIngredient} />
-            <input
-              type="number"
-              required
-              className="forminput"
-              placeholder="Quantity"
-              value={newIngredient.quantity}
-              onChange={(event) =>
-                set_newIngredient({
-                  ...newIngredient,
-                  quantity: event.target.value,
-                })
-              }
-            />
-            <select
-              className="forminput"
-              name="units-of-measurement"
-              defaultValue=""
-              id="unit"
-              required
-              onChange={(event) =>
-                set_newIngredient({
-                  ...newIngredient,
-                  unitOfMeasure: event.target.value,
-                })
-              }
-            >
-              <option value="" disabled>
-                Unit
-              </option>
-              <optgroup label="Volume">
-                <option value="teaspoon">teaspoon</option>
-                <option value="tablespoon">tablespoon</option>
-                <option value="cup">cup</option>
-                <option value="ml">ml</option>
-                <option value="l">l</option>
-              </optgroup>
-              <optgroup label="Weight">
-                <option value="g">g</option>
-                <option value="kg">kg</option>
-              </optgroup>
-              <optgroup label="Other">
-                <option value="unit">unit</option>
-                <option value="to taste">to taste</option>
-              </optgroup>
-            </select>
-            <button className="buttons" type="submit">
-              + Add Ingredient
-            </button>
-          </form>
-        </div>
-        {/* End ingredient form */}
-        <div>
-          {ingredientList
-            ? ingredientList.map((e) => (
-                <div key={e.id} className="itemList">
-                  <p>{`${e.quantity} (${e.unitOfMeasure}) of ${e.name}`}</p>
-
-                  <button
-                    className="deleteButton"
-                    onClick={() => deleteIngredient(e)}
-                  >
-                    x
-                  </button>
-                </div>
-              ))
-            : null}
-        </div>
-      </div>
-      {/* End Ingredient List */}
-      <div className="recipeCard" style={{ display: "flex" }}>
-        <form onSubmit={submitRecipe}>
-          <div style={{ display: "flex" }}>
+    <div style={{ textAlign: "center" }}>
+      <h1>Post a new Recipe</h1>
+      <div className="layout">
+        <div className="column-1">
+          <div className="card">
+            <h3 className="title">Ingredients:</h3>
             <div>
-              {/* <h1>Title</h1> */}
+              <form
+                // className="resultBoard"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  pushIngredient();
+                }}
+              >
+                {autocomplete ? (
+                  <Autocomplete
+                    array={allIngredients}
+                    action={selectIngredient}
+                  />
+                ) : (
+                  <div>
+                    <h4 className="form-input">{newIngredient.name}</h4>
+                    <div
+                      onClick={() => {
+                        set_newIngredient(initialStateNewIngredient);
+                        set_autocomplete(true);
+                      }}
+                      className="side-button red"
+                    >
+                      <h4 style={{ margin: "auto" }}>X</h4>
+                    </div>
+                  </div>
+                )}
+                <input
+                  type="number"
+                  required
+                  className="form-input"
+                  placeholder="Quantity"
+                  value={newIngredient.quantity}
+                  onChange={(event) =>
+                    set_newIngredient({
+                      ...newIngredient,
+                      quantity: event.target.value,
+                    })
+                  }
+                />
+                <br />
+
+                <select
+                  className="form-input"
+                  name="units-of-measurement"
+                  defaultValue=""
+                  id="unit"
+                  required
+                  onChange={(event) =>
+                    set_newIngredient({
+                      ...newIngredient,
+                      unitOfMeasure: event.target.value,
+                    })
+                  }
+                >
+                  <option value="" disabled>
+                    Unit
+                  </option>
+                  <optgroup label="Volume">
+                    <option value="teaspoon">teaspoon</option>
+                    <option value="tablespoon">tablespoon</option>
+                    <option value="cup">cup</option>
+                    <option value="ml">ml</option>
+                    <option value="l">l</option>
+                  </optgroup>
+                  <optgroup label="Weight">
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                  </optgroup>
+                  <optgroup label="Other">
+                    <option value="unit">unit</option>
+                    <option value="to taste">to taste</option>
+                  </optgroup>
+                </select>
+                <br />
+                <button className="buttons" type="submit">
+                  + Add Ingredient
+                </button>
+              </form>
+            </div>
+            {/* End ingredient form */}
+            <div>
+              {ingredientList
+                ? ingredientList.map((e) => (
+                    <div key={e.id} style={{ display: "flex" }}>
+                      <h4 className="ingredient-card">{`${e.quantity} (${e.unitOfMeasure}) of ${e.name}`}</h4>
+                      <div
+                        onClick={() => deleteIngredient(e)}
+                        className="side-button red"
+                      >
+                        <div style={{ margin: "auto" }}>
+                          <h4>X</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                : null}
+            </div>
+          </div>
+        </div>
+        <div className="column-2">
+          <div className="card">
+            <h3 className="title">Information:</h3>
+            <form onSubmit={submitRecipe}>
               <input
                 type="string"
                 required
-                className="forminput"
+                className="form-input"
                 placeholder="Recipe's Title"
                 value={newRecipe.title}
                 onChange={(event) =>
@@ -198,29 +237,10 @@ export default function PostRecipe() {
                   })
                 }
               />
-              <br />
-              {/* <h1>Image</h1> */}
-              {!postRecipeState.imageUrl ? (
-                <input
-                  type="text"
-                  required
-                  className="forminput"
-                  placeholder="A nice picture of your Recipe (URL)"
-                  value={newRecipe.imageUrl}
-                  onChange={(event) =>
-                    set_newRecipe({
-                      ...newRecipe,
-                      imageUrl: event.target.value,
-                    })
-                  }
-                />
-              ) : null}
-              <br />
-              {/* <h1>Description</h1> */}
               <input
                 type="text"
                 required
-                className="forminput"
+                className="form-input"
                 placeholder="Short Description"
                 value={newRecipe.description}
                 onChange={(event) =>
@@ -230,26 +250,20 @@ export default function PostRecipe() {
                   })
                 }
               />
-              <br />
-              {/* <h1>Directions</h1> */}
-              <textarea
-                type="text"
-                required
-                className="forminput"
-                placeholder="Recipe's Directions"
-                value={newRecipe.content}
-                onChange={(event) =>
-                  set_newRecipe({
-                    ...newRecipe,
-                    content: event.target.value,
-                  })
-                }
-              />
-            </div>
-            <div>
-              <h1>Upload Image</h1>
-              <input type="file" onChange={uploadImage} />
-              <div className="imgContainer" style={{ height: "300px" }}>
+              <h3 className="title">Upload Image:</h3>
+              <label className="buttons file">
+                <input type="file" onChange={uploadImage} />
+                Choose a picture of your recipe!
+              </label>
+              <div
+                className="img-container form-input"
+                style={{
+                  height: "200px",
+                  padding: "0",
+                  margin: "10px 0px",
+                  backgroundColor: "rgb(238, 238, 238)",
+                }}
+              >
                 {postRecipeState.imageUrl ? (
                   <img
                     alt="recipe pic"
@@ -258,13 +272,27 @@ export default function PostRecipe() {
                   />
                 ) : null}
               </div>
-              <br />
-            </div>
+              {/* <h1>Directions</h1> */}
+              <textarea
+                type="text"
+                required
+                className="form-input"
+                placeholder="Recipe's Directions"
+                value={newRecipe.content}
+                style={{ height: "200px", overflowY: "scroll" }}
+                onChange={(event) =>
+                  set_newRecipe({
+                    ...newRecipe,
+                    content: event.target.value,
+                  })
+                }
+              />
+              <button className="buttons " type="submit">
+                Post Recipe
+              </button>
+            </form>
           </div>
-          <button className="buttons" type="submit">
-            Post Recipe
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

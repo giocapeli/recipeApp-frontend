@@ -5,7 +5,6 @@ font-family: 'Rancho', cursive; */
 
 .searchItens {
   padding: 10px 15px;
-  width: 100%;
   border: 0px;
   text-align: center;
 }
@@ -34,13 +33,6 @@ font-family: 'Rancho', cursive; */
   min-width: 350px;
   height: 100%;
 }
-.buttons {
-  padding: 10px;
-  width: 95%;
-  border: 0px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(51, 97, 59);
-}
 
 .searchButton {
   border: 0px;
@@ -48,25 +40,31 @@ font-family: 'Rancho', cursive; */
   color: white;
 }
 
-.forminput {
+.ingredient-card {
   width: 100%;
+}
+
+.form-input,
+.side-button,
+.buttons,
+.ingredient-card {
+  margin: 5px;
   padding: 10px;
-  /* display: block; */
-  margin: 5px auto;
   border: 1px solid rgb(196, 196, 196);
 }
-.forminput:focus {
-  outline-color: rgb(143, 218, 255);
+.form-input:focus {
+  outline-color: rgb(138, 201, 131);
 }
 
 .itemList {
-  padding: 2px;
+  /* padding: 2px; */
   display: flex;
   /* justify-content: flex-end; */
   height: 100%;
   font-weight: normal;
 }
 .autompleteSugestion {
+  width: 100%;
   padding: 3px 20px;
   margin: 5px 0px;
 }
@@ -76,6 +74,8 @@ font-family: 'Rancho', cursive; */
 }
 .autocompleteForm {
   position: absolute;
+  width: 100%;
+
   background-color: white;
 }
 /* Pop-up */
@@ -83,7 +83,7 @@ font-family: 'Rancho', cursive; */
   padding: 15px;
 }
 .centered {
-  width: 550px;
+  /* width: 550px; */
   text-align: center;
   position: fixed;
   top: 50%;
@@ -94,7 +94,7 @@ font-family: 'Rancho', cursive; */
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   background-color: rgba(70, 70, 70, 0.685);
 }
@@ -118,9 +118,12 @@ font-family: 'Rancho', cursive; */
 /* Border Smooth */
 .box,
 .pop-up,
-.forminput,
+.form-input,
 .buttons,
-.resultCard {
+.resultCard,
+.side-button,
+.ingredient-card,
+.card {
   border: 0px;
   overflow: hidden;
   border-radius: 10px;
@@ -138,15 +141,17 @@ font-family: 'Rancho', cursive; */
 .switch,
 .exit-button,
 .searchItens,
-.buttons {
+.buttons,
+.side-button {
   box-shadow: 3px 3px 10px rgba(139, 139, 139, 0.425);
 }
 /* Shadow medium */
 .box,
 .pop-up,
 .autocompleteForm,
-.forminput,
-.resultCard {
+.form-input,
+.resultCard,
+.card {
   box-shadow: 3px 3px 10px rgba(32, 32, 32, 0.425);
 }
 /* Switch */
@@ -154,11 +159,11 @@ font-family: 'Rancho', cursive; */
   margin: 20px;
   position: relative;
   display: flex;
-  width: 300px;
+  /* width: 300px; */
   justify-content: center;
 }
 .switch-button {
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   border: 0px;
   color: white;
@@ -177,7 +182,7 @@ font-family: 'Rancho', cursive; */
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   background-color: rgba(70, 70, 70, 0.685);
 }
@@ -186,6 +191,7 @@ font-family: 'Rancho', cursive; */
   width: 300px;
   /* margin: 10px; */
   font-size: 14pt;
+  padding-top: 10px;
 }
 .container {
   margin: 0px;
@@ -222,33 +228,81 @@ font-family: 'Rancho', cursive; */
   width: 60%;
   min-width: 350px;
 }
-
-.column-1 {
-  flex-grow: 1;
-}
-.column-2 {
-  flex-grow: 2;
-  height: 600px;
-}
-.column-1,
-.column-2 {
-  background-color: black;
-  min-width: 300px;
-}
 .layout {
   padding: 15px;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   align-items: center;
-  align-content: flex-end;
+  justify-content: space-evenly;
+  /* align-content: center; */
 }
+.column-1 {
+  /* width: 30%; */
+  flex-grow: 1;
+}
+.column-2 {
+  /* width: 60%; */
+  flex-grow: 2;
+}
+.column-1,
+.column-2 {
+  /* background-color: black; */
+  min-width: 300px;
+}
+
 /* NAVBAR */
 a {
   text-decoration: line-through;
 }
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) {
   .centered {
     width: 90%;
   }
+} */
+.side-button,
+.buttons {
+  min-width: 40px;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+  color: white;
+}
+
+.buttons {
+  width: 100%;
+}
+.side-button.red {
+  background-color: rgb(221, 43, 19);
+}
+.side-button.green,
+.buttons {
+  background-color: rgb(65, 133, 57);
+}
+
+/* HEEERREEEE */
+.buttons,
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin: 0px;
+  margin-top: 10px;
+}
+.img-container {
+  margin: 0px;
+  overflow: hidden;
+}
+input[type="file"] {
+  display: none;
+}
+.buttons.file {
+  background-color: rgb(238, 238, 238);
+  font-weight: normal;
+  color: rgb(37, 37, 37);
+}
+.card {
+  padding: 10px;
+}
+.title {
+  margin-top: 20px;
 }

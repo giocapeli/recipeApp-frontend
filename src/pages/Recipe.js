@@ -21,25 +21,24 @@ export default function Recipe() {
     console.log(recipeData);
   }, []);
   console.log("ID", id);
-  if (!recipeData.title) {
+
+  if (!recipeData) {
     return <Loading />;
-  } else {
-    return (
-      <div className="resultBoard">
-        <div className="box">
+  }
+
+  return (
+    <div className="layout">
+      <div className="column-1" style={{ width: "30%" }}>
+        <div className="card">
           <h1>Ingredients:</h1>
           {recipeData.ingredients.map((e) => (
             <h3>{`${e.recipe_ingredients.quantity} (${e.recipe_ingredients.unitOfMeasure}) of ${e.name}`}</h3>
           ))}
-          <div style={{ display: "flex" }}>
-            <button style={{ backgroundColor: "#DFFFC8" }} className="buttons">
-              Print
-            </button>
-            <button
-              style={{ backgroundColor: "#DFFFC8" }}
-              className="buttons"
-              onClick={() => set_sharePopUp(true)}
-            >
+          <div
+          // style={{ display: "flex" }}
+          >
+            <button className="buttons">Print</button>
+            <button className="buttons" onClick={() => set_sharePopUp(true)}>
               Share
             </button>
             {sharePopUp ? (
@@ -47,9 +46,11 @@ export default function Recipe() {
             ) : null}
           </div>
         </div>
-        <div className="recipeCard">
+      </div>
+      <div className="column-2" style={{ width: "60%" }}>
+        <div className="card">
           <h1>{recipeData.title}</h1>
-          <div className="container" style={{ height: "300px" }}>
+          <div className="img-container" style={{ height: "300px" }}>
             <img
               className="img"
               alt={recipeData.title}
@@ -62,6 +63,6 @@ export default function Recipe() {
           <p>{recipeData.content}</p>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }

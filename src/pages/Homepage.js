@@ -29,7 +29,7 @@ export default function Homepage() {
   }
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       {!searchResults.length > 0 ? (
         <div className="centered">
           <SearchForm searchIt={searchIt} />
@@ -50,10 +50,7 @@ export default function Homepage() {
                 imageUrl={e.imageUrl}
               />
             ))}
-            <button
-              className="searchButton searchItens"
-              onClick={() => resetState()}
-            >
+            <button className="buttons" onClick={() => resetState()}>
               Search Again
             </button>
           </div>
