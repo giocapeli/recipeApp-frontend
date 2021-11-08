@@ -23,12 +23,13 @@ export default function UserPage() {
   }
 
   return (
-    <div className="centerPage">
-      <h1>{user.name}'s Page</h1>
+    <div style={{ textAlign: "center" }}>
+      <h1 className="title">{user.name}'s Page</h1>
       <div className="resultBoard">
         <div className="ingredientsCard">
-          <button
-            className="buttons"
+          <h3
+            // className="buttons file"
+            style={{ marginBottom: "25px" }}
             onClick={() =>
               set_toggleMenu({
                 ...toggleMenu,
@@ -36,22 +37,25 @@ export default function UserPage() {
               })
             }
           >
-            <h3>My Favorites</h3>
-          </button>
+            My Favorites
+          </h3>
           {toggleMenu.favorites
             ? user.favorites.map((e) => (
-                <RecipeCard
-                  id={e.id}
-                  title={e.title}
-                  ratings={e.ratings}
-                  imageUrl={e.imageUrl}
-                />
+                <div style={{ marginBottom: "20px" }}>
+                  <RecipeCard
+                    id={e.id}
+                    title={e.title}
+                    ratings={e.ratings}
+                    imageUrl={e.imageUrl}
+                  />
+                </div>
               ))
             : null}
         </div>
         <div className="ingredientsCard">
-          <button
-            className="buttons"
+          <h3
+            // className="buttons file"
+            style={{ marginBottom: "25px" }}
             onClick={() =>
               set_toggleMenu({
                 ...toggleMenu,
@@ -59,22 +63,25 @@ export default function UserPage() {
               })
             }
           >
-            <h3>My Recipes</h3>
-          </button>
+            My Recipes
+          </h3>
           {toggleMenu.my
             ? user.owner.map((e) => (
-                <RecipeCard
-                  id={e.id}
-                  title={e.title}
-                  ratings={e.ratings}
-                  imageUrl={e.imageUrl}
-                />
+                <div style={{ marginBottom: "20px" }}>
+                  <RecipeCard
+                    id={e.id}
+                    title={e.title}
+                    ratings={e.ratings}
+                    imageUrl={e.imageUrl}
+                  />
+                </div>
               ))
             : null}
         </div>
         <div className="ingredientsCard">
-          <button
-            className="buttons"
+          <h3
+            style={{ marginBottom: "25px" }}
+            // className="buttons file"
             onClick={() =>
               set_toggleMenu({
                 ...toggleMenu,
@@ -82,16 +89,18 @@ export default function UserPage() {
               })
             }
           >
-            <h3>My Ratings</h3>
-          </button>
+            My Ratings
+          </h3>
           {toggleMenu.ratings
             ? user.ratings.map((e) => (
-                <RecipeCard
-                  id={e.id}
-                  title={e.title}
-                  ratings={e.ratings}
-                  imageUrl={e.imageUrl}
-                />
+                <div style={{ marginBottom: "20px" }}>
+                  <RecipeCard
+                    id={e.id}
+                    title={e.title}
+                    ratings={e.ratings}
+                    imageUrl={e.imageUrl}
+                  />
+                </div>
               ))
             : null}
         </div>

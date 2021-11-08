@@ -33,33 +33,28 @@ export default function SignUp() {
 
   return (
     <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-      <h1 className="mt-5 mb-5">Login</h1>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
+      <h1 className="title">Login</h1>
+      <form>
+        <input
+          type="email"
+          required
+          className="form-input"
+          placeholder="Email address"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          type="email"
-          placeholder="Enter email"
-          required
         />
-      </Form.Group>
-
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
+        <input
+          type="password"
+          required
+          className="form-input"
+          placeholder="Password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          type="password"
-          placeholder="Password"
-          required
         />
-      </Form.Group>
-      <Form.Group className="mt-5">
-        <Button variant="primary" type="submit" onClick={submitForm}>
-          Log in
-        </Button>
-      </Form.Group>
+      </form>
+      <button className="buttons" type="submit" onClick={submitForm}>
+        Log in
+      </button>
       <Link to="/signup" style={{ textAlign: "center" }}>
         Click here to sign up
       </Link>

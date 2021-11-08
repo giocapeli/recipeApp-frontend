@@ -24,14 +24,13 @@ export default function Homepage() {
   }
 
   function resetState() {
-    console.log("click");
     dispatch(clearState(true));
   }
 
   return (
     <div style={{ textAlign: "center" }}>
       {!searchResults.length > 0 ? (
-        <div className="centered">
+        <div className="centered" style={{ margin: "0px" }}>
           <SearchForm searchIt={searchIt} />
         </div>
       ) : (

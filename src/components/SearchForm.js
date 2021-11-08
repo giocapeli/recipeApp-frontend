@@ -31,7 +31,7 @@ export default function SearchForm(props) {
         </div>
 
         <br />
-        <button className="buttons" type="submit">
+        <button className="buttons" type="submit" style={{ margin: "0px" }}>
           What Should I Cook?
         </button>
       </form>

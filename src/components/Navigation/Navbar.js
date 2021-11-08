@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./style.css";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectToken, selectUser } from "../../store/user/selectors";
@@ -22,12 +21,21 @@ export default function Menu() {
     setshow(false);
     // const width = window.innerWidth;
   }
+  function resetState() {
+    dispatch(clearState(true));
+  }
+
+  function logout() {
+    dispatch(logOut());
+    resetState();
+  }
+
   window.onresize = reportWindowSize;
   const menu = show ? "" : "hide";
   return (
     <div className="my-navbar">
       {!show ? <div style={{ flexGrow: "1" }}>WhatShouldICook?</div> : null}
-      <Link to="/">
+      <Link to="/" onClick={() => resetState()}>
         <h1 className={`navbar-link ${menu}`}>Search</h1>
       </Link>
       {token ? (
@@ -50,7 +58,7 @@ export default function Menu() {
           <h1
             style={{ color: "rgb(158, 18, 0)", fontWeight: "500" }}
             className={`navbar-link ${menu}`}
-            onClick={() => dispatch(logOut())}
+            onClick={() => logout()}
           >
             Logout
           </h1>
