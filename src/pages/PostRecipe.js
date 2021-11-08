@@ -249,9 +249,15 @@ export default function PostRecipe() {
             <div>
               <h1>Upload Image</h1>
               <input type="file" onChange={uploadImage} />
-              {postRecipeState.imageUrl ? (
-                <img src={postRecipeState.imageUrl} />
-              ) : null}
+              <div className="imgContainer" style={{ height: "300px" }}>
+                {postRecipeState.imageUrl ? (
+                  <img
+                    alt="recipe pic"
+                    className="img"
+                    src={postRecipeState.imageUrl}
+                  />
+                ) : null}
+              </div>
               <br />
             </div>
           </div>

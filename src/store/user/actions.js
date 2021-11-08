@@ -9,28 +9,6 @@ import {
   setMessage,
 } from "../appState/actions";
 
-export function postRecipe(recipe) {
-  return async function thunk(dispatch, getState) {
-    const userId = getState().user.id;
-    const body = {
-      ...recipe,
-      userId,
-      //getState().ingredients found
-      //getState().ingredients notfound
-    };
-    try {
-      const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body);
-      console.log(response.data);
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-      } else {
-        console.log(e.message);
-      }
-    }
-  };
-}
-
 //////////////////////LOGIN
 export function loginSuccess(userWithToken) {
   return {
@@ -207,5 +185,29 @@ export function sendImageUrl(url) {
   return {
     type: "addImage/NEW",
     payload: url,
+  };
+}
+//post recipe
+export function postRecipe(recipe) {
+  return async function thunk(dispatch, getState) {
+    const imageUrl = getState().user.postRecipe.imageUrl;
+    const userId = getState().user.id;
+    const ingredientList = getState().user.postRecipe.ingredientList;
+    const body = {
+      ...recipe,
+      userId,
+      imageUrl,
+      ingredientList,
+    };
+    try {
+      const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body);
+      console.log(response.data);
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
   };
 }
