@@ -28,15 +28,25 @@ export function favoriteRecipe(recipeId) {
       } else if (response.data.message === "Unfavorited") {
         const newFavorites = favorites.filter((e) => e.id !== recipeId);
         dispatch(sendFavoriteRecipe(newFavorites));
-      }
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-        //dispatch(setMessage("danger", true, e.response.data.message));
       } else {
-        console.log(e.message);
-        //dispatch(setMessage("danger", true, e.message));
+        dispatch(
+          showMessageWithTimeout(
+            "danger",
+            true,
+            "Something wrong happened.",
+            3000
+          )
+        );
       }
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
     }
   };
 }
@@ -70,12 +80,15 @@ export function postImage(files) {
       const response = await axios.post(`${cloudinaryUrl}`, data);
       console.log("Cloudinary Response:", response.data.url);
       dispatch(sendImageUrl(response.data.url));
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
       } else {
-        console.log(e.message);
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
 }
@@ -86,14 +99,13 @@ export function sendImageUrl(url) {
   };
 }
 
-export function postRecipe(recipe) {
+export function postRecipe(recipe, history) {
   return async function thunk(dispatch, getState) {
     const imageUrl = getState().user.postRecipe.imageUrl;
     const userId = getState().user.id;
     const ingredientList = getState().user.postRecipe.ingredientList;
     const token = getState().user.token;
     const headers = { Authorization: `Bearer ${token}` };
-
     const body = {
       ...recipe,
       userId,
@@ -104,17 +116,40 @@ export function postRecipe(recipe) {
       const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body, {
         headers,
       });
+      //console.log(response.data);
+      showMessageWithTimeout(
+        "success",
+        true,
+        "Recipe posted with success!",
+        3000
+      );
+      // dispatch(sendNewRecipeId(response.data.id));
+      dispatch(clearPostRecipe());
       console.log(response.data);
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
+      history.push(`/recipe/${response.data.id}`);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
       } else {
-        console.log(e.message);
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
 }
-
+// export function sendNewRecipeId(id) {
+//   return {
+//     type: "newRecipeId/NEW",
+//     payload: id,
+//   };
+// }
+export function clearPostRecipe() {
+  return {
+    type: "postRecipe/CLEAR",
+  };
+}
 //////////////////////LOGIN
 export function loginSuccess(userWithToken) {
   return {
@@ -142,7 +177,6 @@ export function signUp(name, email, password) {
         email,
         password,
       });
-
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", true, "account created"));
       dispatch(appDoneLoading());

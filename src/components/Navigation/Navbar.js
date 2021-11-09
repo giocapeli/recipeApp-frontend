@@ -22,6 +22,7 @@ export default function Menu() {
   }
   function resetState() {
     dispatch(clearState(true));
+    setshow(false);
   }
 
   function logout() {
@@ -30,25 +31,45 @@ export default function Menu() {
   }
 
   window.onresize = reportWindowSize;
+
   const menu = show ? "" : "hide";
   return (
     <div className="my-navbar">
-      {!show ? <div style={{ flexGrow: "1" }}>WhatShouldICook?</div> : null}
+      {!show ? (
+        <Link to="/" onClick={() => resetState()}>
+          <div style={{ flexGrow: "1" }}>WhatShouldICook?</div>
+        </Link>
+      ) : null}
       <Link to="/" onClick={() => resetState()}>
         <h1 className={`navbar-link ${menu}`}>Search</h1>
       </Link>
       {token ? (
-        <Link to="/newrecipe">
+        <Link
+          to="/newrecipe"
+          onClick={() => {
+            setshow(false);
+          }}
+        >
           <h1 className={`navbar-link ${menu}`}>Post Recipe</h1>
         </Link>
       ) : null}
       {token ? (
-        <Link to="/user">
+        <Link
+          to="/user"
+          onClick={() => {
+            setshow(false);
+          }}
+        >
           <h1 className={`navbar-link ${menu}`}>{user.name}</h1>
         </Link>
       ) : null}
       {!token ? (
-        <Link to="/login">
+        <Link
+          to="/login"
+          onClick={() => {
+            setshow(false);
+          }}
+        >
           <h1 className={`navbar-link ${menu}`}>Login</h1>
         </Link>
       ) : null}
@@ -57,7 +78,10 @@ export default function Menu() {
           <h1
             style={{ color: "rgb(158, 18, 0)", fontWeight: "500" }}
             className={`navbar-link ${menu}`}
-            onClick={() => logout()}
+            onClick={() => {
+              logout();
+              setshow(false);
+            }}
           >
             Logout
           </h1>

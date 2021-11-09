@@ -10,6 +10,7 @@ const initialState = {
     recipe: null,
     imageUrl: null,
   },
+  newRecipeId: null,
 };
 
 export default function user(state = initialState, action) {
@@ -20,7 +21,6 @@ export default function user(state = initialState, action) {
         favorites: action.payload,
       };
     }
-
     case "ingredient/NEW": {
       return {
         ...state,
@@ -50,7 +50,12 @@ export default function user(state = initialState, action) {
         },
       };
     }
-
+    case "postRecipe/CLEAR": {
+      return {
+        ...state,
+        postRecipe: { ...initialState.postRecipe },
+      };
+    }
     case "LOGIN_SUCCESS": {
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };
@@ -67,6 +72,9 @@ export default function user(state = initialState, action) {
     case "test/NEW": {
       return { ...state, favorites: action.payload };
     }
+    // case "newRecipeId/NEW": {
+    //   return { ...state, newRecipeId: action.payload };
+    // }
     default: {
       return state;
     }

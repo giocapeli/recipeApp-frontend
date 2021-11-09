@@ -22,13 +22,13 @@ export default function Homepage() {
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", zIndex: "-1" }}>
       {!searchResults.length > 0 ? (
         <div className="centered">
           <SearchForm searchIt={searchIt} />
         </div>
       ) : (
-        <div>
+        <div className="page">
           {searchKeywords.length ? (
             <h1>
               Here the results for {searchKeywords.map((e) => `[${e}] `)}:

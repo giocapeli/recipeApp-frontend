@@ -27,9 +27,8 @@ export default function SignUp() {
     setEmail("");
     setPassword("");
   }
-
   return (
-    <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+    <Form as={Col} md={{ span: 6, offset: 3 }} className="page">
       <h1 className="title">Login</h1>
       <form>
         <input
@@ -52,7 +51,7 @@ export default function SignUp() {
       <button className="buttons" type="submit" onClick={submitForm}>
         Log in
       </button>
-      <Link to="/signup" style={{ textAlign: "center" }}>
+      <Link to="/signup" style={{ textAlign: "center", color: "blue" }}>
         Click here to sign up
       </Link>
     </Form>

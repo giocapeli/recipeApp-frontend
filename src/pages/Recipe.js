@@ -31,7 +31,7 @@ export default function Recipe() {
   }
 
   return (
-    <div className="layout">
+    <div className="layout page">
       <div className="column-1" style={{ width: "30%" }}>
         <div className="card">
           <h2>Ingredients:</h2>

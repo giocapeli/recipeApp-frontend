@@ -17,8 +17,11 @@ import {
 import Autocomplete from "../components/Autocomplete";
 import { selectAllIngredients } from "../store/ingredients/selectors";
 import { getAllIngredients } from "../store/ingredients/actions";
+import { showMessageWithTimeout } from "../store/appState/actions";
+import { useHistory } from "react-router-dom";
 
 export default function PostRecipe() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const allIngredients = useSelector(selectAllIngredients);
   const postRecipeState = useSelector(selectPostRecipe);
@@ -45,6 +48,7 @@ export default function PostRecipe() {
   useEffect(() => {
     dispatch(getAllIngredients());
   }, []);
+
   useEffect(() => {
     set_newRecipe({
       ...newRecipe,
@@ -55,10 +59,28 @@ export default function PostRecipe() {
   function submitRecipe(event) {
     event.preventDefault();
     if (ingredientList.length === 0) {
-      console.log("Please fill the ingredient list");
+      dispatch(
+        showMessageWithTimeout(
+          "danger",
+          true,
+          "Please fill the ingredient list",
+          3000
+        )
+      );
       return;
     }
-    dispatch(postRecipe(newRecipe));
+    if (!newRecipe.imageUrl) {
+      dispatch(
+        showMessageWithTimeout(
+          "danger",
+          true,
+          "Please insert an image of your recipe",
+          3000
+        )
+      );
+      return;
+    }
+    dispatch(postRecipe(newRecipe, history));
     set_newRecipe(initialStateNewRecipe);
     set_newIngredient(initialStateNewIngredient);
   }
@@ -104,7 +126,7 @@ export default function PostRecipe() {
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" }} className="page">
       <h1>Post a new Recipe</h1>
       <div className="layout">
         <div className="column-1">

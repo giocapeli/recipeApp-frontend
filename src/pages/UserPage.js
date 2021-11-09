@@ -7,9 +7,9 @@ import Loading from "../components/Loading";
 
 export default function UserPage() {
   const initialToggleMenu = {
-    favorites: true,
-    ratings: true,
-    my: true,
+    favorites: false,
+    ratings: false,
+    my: false,
   };
   const [toggleMenu, set_toggleMenu] = useState(initialToggleMenu);
   const user = useSelector(selectUser);
@@ -22,7 +22,7 @@ export default function UserPage() {
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" }} className="page">
       <h1 className="title">{user.name}'s Page</h1>
       <div className="resultBoard">
         <div className="ingredientsCard">

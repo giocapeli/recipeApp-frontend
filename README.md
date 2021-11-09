@@ -1,42 +1,90 @@
-# Frontend template
+# WhatShouldICook?
 
-This is a simple react/redux/jwt template to start a project quickly
+# Frontend
 
-## Table of contents:
+## Intro
 
-- **[Setup](#setup-how-to-use-this-template)**
-- **[Create React App docs](#cra-docs)**
+---
 
-## SETUP How to use this template
+Do you have something in your fridge that is close to expiring, and you don't want to waste it, but you are out of ideas of how to cook it?
+Is your pantry full, but you are still struggling to decide what to eat and are afraid to end having the same soup as every day?
+Did you discover a new recipe that opened your eyes to a new world of flavors, and, as a generous person, you want to share it with everyone?
 
-1. Create a new project based on this template using the `Use this template` button
+**WhatShouldICook?** is an web app that is going to help you to solve all those situations. With **WhatShouldICook?** you can search recipes by ingredients and receive suggestions of how to give good use to that ingredient that is standing in your fridge or pantry for days or weeks.
 
-![HOW_TO_USE](https://user-images.githubusercontent.com/20372832/77003323-70966180-695d-11ea-8abe-b362d57135f3.gif)
+With **WhatShouldICook?** you can also favorite and rate the meals you have done and share your recipe with the comunity.
 
-2. Clone the app
+## Technologies used
 
-```
-git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
-```
+---
 
-3. cd into your project
+### Frontend:
 
-```
-cd YOUR_PROJECT_NAME
-```
+- React
+- Redux
+- Axios
 
-4. install dependencies
+### Backend:
 
-```
-npm install
-```
+- Express
+- REST
+- Sequelize
+- Postgres
+- NodeJS
 
-5. Start development server with npm start
+## Goals
 
-```
-npm start
-```
+---
 
-## CRA docs
+The main goal of this project is to practice all technologies and tools learned in Codaisseur's Full Stack Javascript Academy and try to learn and use new technology by myself.
+Supporting this goal I intend to:
 
-The normal Create React App docs can be found in [CRA_DOCS.md](./CRA_DOCS.md)
+- Create and Follow a doable plan.
+- Have a wireframe of my MVP, considering future new features.
+- Have a Database model of my MVP, considering future new features.
+- Keeping constants and organized commits using Github.
+
+## User Stories
+
+---
+
+#### A - As a User, I want to:
+
+- Fill a form with some ingredients I have in my pantry/fridge and get suggestions of recipes that use that ingredient.
+- Select one recipe and get a full list of ingredients.
+- I also receive the complete recipe that I can share / print.
+
+#### B - As a logged User, I want to:
+
+- Favorite, and give ratings to recipes I checked/cooked.
+- Create my own recipes to share with the community.
+
+### Next Features:
+
+- Comment in a Recipe.
+- Post a picture of a Meal I cooked on the Recipe's page.
+- Receive suggestions from different sources besides the community Recipe Database.
+
+## Links
+
+---
+
+### Wireframe:
+
+[Link to Wireframe](https://wireframepro.mockflow.com/view/Mchp450YTmb)
+
+### Database Model:
+
+[Link to Database Model](https://lucid.app/lucidchart/01f1a08d-e93c-42db-b1b5-a4c8815e9a67/edit?viewport_loc=319%2C305%2C1650%2C683%2C0_0&invitationId=inv_96b4614e-6a4f-4322-b77a-7af921ba85bd)
+
+### Project Board:
+
+[Link to Kanban](https://github.com/users/giocapeli/projects/2)
+
+### Backend repository:
+
+[Link to Backend repository](https://github.com/giocapeli/Portfolio-Backend)
+
+### Frontend repository:
+
+[Link to Frontend repository](https://github.com/giocapeli/Portfolio-Frontend)

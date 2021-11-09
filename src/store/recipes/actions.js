@@ -1,5 +1,6 @@
 import axios from "axios";
 import { apiUrl } from "../../config/constants";
+import { appDoneLoading, setMessage } from "../appState/actions";
 
 export function clearState(bool) {
   return {
@@ -16,12 +17,15 @@ export function searchRecipes(array) {
       console.log(response.data);
       dispatch(sendSearchResults(response.data.recipes));
       dispatch(sendActiveSearch(response.data));
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
       } else {
-        console.log(e.message);
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
 }
@@ -43,7 +47,16 @@ export function getRecipeById(id) {
     try {
       const response = await axios.get(`${apiUrl}/recipe/${id}`);
       dispatch(sendSelectedRecipe(response.data));
-    } catch (e) {}
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
   };
 }
 export function sendSelectedRecipe(object) {
@@ -64,12 +77,15 @@ export function ratingRecipe(recipeId, rating) {
         headers,
       });
       console.log(response.data);
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
       } else {
-        console.log(e.message);
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
       }
+      dispatch(appDoneLoading());
     }
   };
 }

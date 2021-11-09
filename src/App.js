@@ -29,7 +29,6 @@ function App() {
     <div className="App">
       {/* <Navigation /> */}
       <Navbar />
-      <MessageBox />
       {isLoading ? <Loading /> : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
@@ -40,6 +39,7 @@ function App() {
         <Route path="/newrecipe" component={PostRecipe} />
         <Route path="/layout" component={Layout} />
       </Switch>
+      <MessageBox />
     </div>
   );
 }
