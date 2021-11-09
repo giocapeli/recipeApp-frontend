@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipeById } from "../store/recipes/actions";
+import { changeActiveSearch, getRecipeById } from "../store/recipes/actions";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import {
@@ -36,13 +36,16 @@ export default function Recipe() {
           {recipeData.ingredients.map((e) =>
             userHaveIngredients.includes(e.name) ? (
               <h3
+                onClick={() => dispatch(changeActiveSearch(e.name))}
                 style={{
                   textDecoration: "line-through",
                   textDecorationColor: "rgba(199, 31, 31, 0.514)",
                 }}
               >{`${e.recipe_ingredients.quantity} (${e.recipe_ingredients.unitOfMeasure}) of ${e.name}`}</h3>
             ) : (
-              <h3>{`${e.recipe_ingredients.quantity} (${e.recipe_ingredients.unitOfMeasure}) of ${e.name}`}</h3>
+              <h3
+                onClick={() => dispatch(changeActiveSearch(e.name))}
+              >{`${e.recipe_ingredients.quantity} (${e.recipe_ingredients.unitOfMeasure}) of ${e.name}`}</h3>
             )
           )}
           <div>

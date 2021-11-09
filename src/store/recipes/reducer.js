@@ -26,6 +26,12 @@ export default function recipes(state = initialState, action) {
         activeSearch: [...action.payload.activeSearch],
       };
     }
+    case "changeActiveSearch/NEW": {
+      return {
+        ...state,
+        activeSearch: action.payload,
+      };
+    }
 
     default: {
       return state;

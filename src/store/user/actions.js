@@ -115,7 +115,6 @@ export function actionTest(test) {
   };
 }
 
-//////////////////////Revised
 export function sendFavoriteRecipe(newFavorites) {
   return {
     type: "changeFavorites/NEW",

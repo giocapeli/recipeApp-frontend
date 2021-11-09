@@ -73,3 +73,23 @@ export function ratingRecipe(recipeId, rating) {
     }
   };
 }
+
+export function changeActiveSearch(name) {
+  return function think(dispatch, getState) {
+    const activeSearch = getState().recipes.activeSearch;
+    if (activeSearch.includes(name)) {
+      const newActiveSearch = activeSearch.filter((e) => e !== name);
+      dispatch(sendChangeActiveSearch(newActiveSearch));
+    } else {
+      const newActiveSearch = [...activeSearch, name];
+      dispatch(sendChangeActiveSearch(newActiveSearch));
+    }
+  };
+}
+
+export function sendChangeActiveSearch(array) {
+  return {
+    type: "changeActiveSearch/NEW",
+    payload: array,
+  };
+}
