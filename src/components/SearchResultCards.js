@@ -6,6 +6,7 @@ import { selectSearchResults } from "../store/recipes/selectors";
 export default function SearchResultCards(props) {
   const { id } = props;
   const recipe = useSelector(selectSearchResults).filter((e) => e.id === id)[0];
+
   return (
     <div className="resultCard shadowBoxCard">
       <div className="titleContainer">

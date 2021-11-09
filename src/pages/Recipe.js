@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeActiveSearch, getRecipeById } from "../store/recipes/actions";
 import { useParams } from "react-router";
@@ -17,15 +17,17 @@ export default function Recipe() {
   const { id } = useParams();
   const recipeData = useSelector(selectSelectedRecipe);
   const userHaveIngredients = useSelector(selectActiveSearch);
+
   useEffect(() => {
     dispatch(getRecipeById(id));
   }, []);
 
-  if (!recipeData) {
-    return <Loading />;
-  }
   function print() {
     window.print();
+  }
+
+  if (!recipeData) {
+    return <Loading />;
   }
 
   return (

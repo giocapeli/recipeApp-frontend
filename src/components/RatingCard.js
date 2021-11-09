@@ -65,7 +65,6 @@ export default function RatingCard(props) {
         ) : (
           <Rating value={stars} readOnly />
         )}
-
         <span style={{ color: "gray", fontSize: "1em" }}>
           [{ratings.length}]
         </span>

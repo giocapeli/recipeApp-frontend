@@ -12,7 +12,6 @@ export default function UserPage() {
     my: true,
   };
   const [toggleMenu, set_toggleMenu] = useState(initialToggleMenu);
-
   const user = useSelector(selectUser);
   if (!user.token) {
     return <h1>Please Login</h1>;

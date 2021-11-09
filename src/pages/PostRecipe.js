@@ -9,7 +9,6 @@ import {
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
-  // checkIngredient,
   postRecipe,
   sendDeletedIngredient,
   postImage,
@@ -22,11 +21,6 @@ import { getAllIngredients } from "../store/ingredients/actions";
 export default function PostRecipe() {
   const dispatch = useDispatch();
   const allIngredients = useSelector(selectAllIngredients);
-
-  useEffect(() => {
-    dispatch(getAllIngredients());
-  }, []);
-
   const postRecipeState = useSelector(selectPostRecipe);
   const initialStateNewRecipe = {
     title: "",
@@ -34,7 +28,6 @@ export default function PostRecipe() {
     content: "",
     description: "",
   };
-
   const initialStateNewIngredient = {
     name: "",
     quantity: "",
@@ -43,23 +36,21 @@ export default function PostRecipe() {
   };
   const [autocomplete, set_autocomplete] = useState(true);
   const [newRecipe, set_newRecipe] = useState(initialStateNewRecipe);
+  const [newIngredient, set_newIngredient] = useState(
+    initialStateNewIngredient
+  );
+  const ingredientList = useSelector(selectIngredientList);
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    dispatch(getAllIngredients());
+  }, []);
   useEffect(() => {
     set_newRecipe({
       ...newRecipe,
       imageUrl: postRecipeState.imageUrl,
     });
   }, [postRecipeState]);
-
-  const [newIngredient, set_newIngredient] = useState(
-    initialStateNewIngredient
-  );
-
-  const ingredientList = useSelector(selectIngredientList);
-
-  const token = useSelector(selectToken);
-  if (!token) {
-    return <NotLogged />;
-  }
 
   function submitRecipe(event) {
     event.preventDefault();
@@ -107,6 +98,11 @@ export default function PostRecipe() {
       set_autocomplete(false);
     }
   }
+
+  if (!token) {
+    return <NotLogged />;
+  }
+
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Post a new Recipe</h1>
@@ -116,7 +112,6 @@ export default function PostRecipe() {
             <h2 className="title">Ingredients:</h2>
             <div>
               <form
-                // className="resultBoard"
                 onSubmit={(event) => {
                   event.preventDefault();
                   pushIngredient();
@@ -155,7 +150,6 @@ export default function PostRecipe() {
                   }
                 />
                 <br />
-
                 <select
                   className="form-input"
                   name="units-of-measurement"
@@ -194,7 +188,6 @@ export default function PostRecipe() {
                 </button>
               </form>
             </div>
-            {/* End ingredient form */}
             <div>
               {ingredientList
                 ? ingredientList.map((e) => (
@@ -266,7 +259,6 @@ export default function PostRecipe() {
                   />
                 ) : null}
               </div>
-              {/* <h1>Directions</h1> */}
               <textarea
                 type="text"
                 required

@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function SearchForm(props) {
   const { searchIt } = props;
-
   const [keywords, set_keywords] = useState("");
 
   function sendResults(event) {
@@ -29,7 +28,6 @@ export default function SearchForm(props) {
             onChange={(event) => set_keywords(event.target.value)}
           />
         </div>
-
         <br />
         <button className="buttons" type="submit" style={{ margin: "0px" }}>
           What Should I Cook?

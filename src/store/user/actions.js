@@ -9,6 +9,112 @@ import {
   setMessage,
 } from "../appState/actions";
 
+export function favoriteRecipe(recipeId) {
+  return async function thunk(dispatch, getState) {
+    const userId = getState().user.id;
+    const favorites = getState().user.favorites;
+    const body = { recipeId, userId };
+    const token = getState().user.token;
+    const headers = { Authorization: `Bearer ${token}` };
+    try {
+      const response = await axios.post(`${apiUrl}/recipe/favorite/`, body, {
+        headers,
+      });
+      console.log(response.data);
+      if (response.data.message === "Favorited") {
+        const newFavorites = [...favorites, response.data.favorite.recipe];
+        console.log("fav", response);
+        dispatch(sendFavoriteRecipe(newFavorites));
+      } else if (response.data.message === "Unfavorited") {
+        const newFavorites = favorites.filter((e) => e.id !== recipeId);
+        dispatch(sendFavoriteRecipe(newFavorites));
+      }
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+        //dispatch(setMessage("danger", true, e.response.data.message));
+      } else {
+        console.log(e.message);
+        //dispatch(setMessage("danger", true, e.message));
+      }
+    }
+  };
+}
+export function sendFavoriteRecipe(newFavorites) {
+  return {
+    type: "changeFavorites/NEW",
+    payload: newFavorites,
+  };
+}
+
+export function sendIngredient(ingredientData) {
+  console.log(ingredientData);
+  return {
+    type: "ingredient/NEW",
+    payload: ingredientData,
+  };
+}
+export function sendDeletedIngredient(ingredientData) {
+  return {
+    type: "ingredient/DELETE",
+    payload: ingredientData,
+  };
+}
+
+export function postImage(files) {
+  return async function thunk(dispatch, getState) {
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "mz6yjao2");
+    try {
+      const response = await axios.post(`${cloudinaryUrl}`, data);
+      console.log("Cloudinary Response:", response.data.url);
+      dispatch(sendImageUrl(response.data.url));
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
+  };
+}
+export function sendImageUrl(url) {
+  return {
+    type: "addImage/NEW",
+    payload: url,
+  };
+}
+
+export function postRecipe(recipe) {
+  return async function thunk(dispatch, getState) {
+    const imageUrl = getState().user.postRecipe.imageUrl;
+    const userId = getState().user.id;
+    const ingredientList = getState().user.postRecipe.ingredientList;
+    const token = getState().user.token;
+    const headers = { Authorization: `Bearer ${token}` };
+
+    const body = {
+      ...recipe,
+      userId,
+      imageUrl,
+      ingredientList,
+    };
+    try {
+      const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body, {
+        headers,
+      });
+      console.log(response.data);
+    } catch (e) {
+      if (e.response) {
+        console.log(e.response.data.message);
+      } else {
+        console.log(e.message);
+      }
+    }
+  };
+}
+
 //////////////////////LOGIN
 export function loginSuccess(userWithToken) {
   return {
@@ -105,119 +211,6 @@ export function getUserWithStoredToken() {
       // get rid of the token by logging out
       dispatch(logOut());
       dispatch(appDoneLoading());
-    }
-  };
-}
-export function actionTest(test) {
-  return {
-    type: "test/NEW",
-    payload: test,
-  };
-}
-
-export function sendFavoriteRecipe(newFavorites) {
-  return {
-    type: "changeFavorites/NEW",
-    payload: newFavorites,
-  };
-}
-export function favoriteRecipe(recipeId) {
-  return async function thunk(dispatch, getState) {
-    const userId = getState().user.id;
-    const favorites = getState().user.favorites;
-    const body = { recipeId, userId };
-    const token = getState().user.token;
-    const headers = { Authorization: `Bearer ${token}` };
-    try {
-      const response = await axios.post(`${apiUrl}/recipe/favorite/`, body, {
-        headers,
-      });
-      console.log(response.data);
-      if (response.data.message === "Favorited") {
-        const newFavorites = [...favorites, response.data.favorite.recipe];
-        console.log("fav", response);
-        dispatch(sendFavoriteRecipe(newFavorites));
-      } else if (response.data.message === "Unfavorited") {
-        const newFavorites = favorites.filter((e) => e.id !== recipeId);
-        dispatch(sendFavoriteRecipe(newFavorites));
-      }
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-        //dispatch(setMessage("danger", true, e.response.data.message));
-      } else {
-        console.log(e.message);
-        //dispatch(setMessage("danger", true, e.message));
-      }
-    }
-  };
-}
-export function sendIngredient(ingredientData) {
-  console.log(ingredientData);
-  return {
-    type: "ingredient/NEW",
-    payload: ingredientData,
-  };
-}
-export function sendDeletedIngredient(ingredientData) {
-  return {
-    type: "ingredient/DELETE",
-    payload: ingredientData,
-  };
-}
-//Post Image
-export function postImage(files) {
-  return async function thunk(dispatch, getState) {
-    // const token = getState().user.token;
-    // const headers = { Authorization: `Bearer ${token}` };
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "mz6yjao2");
-    try {
-      const response = await axios.post(`${cloudinaryUrl}`, data);
-      console.log("Cloudinary Response:", response.data.url);
-      dispatch(sendImageUrl(response.data.url));
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-      } else {
-        console.log(e.message);
-      }
-    }
-  };
-}
-export function sendImageUrl(url) {
-  return {
-    type: "addImage/NEW",
-    payload: url,
-  };
-}
-//post recipe
-export function postRecipe(recipe) {
-  return async function thunk(dispatch, getState) {
-    const imageUrl = getState().user.postRecipe.imageUrl;
-    const userId = getState().user.id;
-    const ingredientList = getState().user.postRecipe.ingredientList;
-    const token = getState().user.token;
-    const headers = { Authorization: `Bearer ${token}` };
-
-    const body = {
-      ...recipe,
-      userId,
-      imageUrl,
-      ingredientList,
-    };
-    try {
-      const response = await axios.post(`${apiUrl}/recipe/createrecipe`, body, {
-        headers,
-      });
-      console.log(response.data);
-    } catch (e) {
-      if (e.response) {
-        console.log(e.response.data.message);
-      } else {
-        console.log(e.message);
-      }
     }
   };
 }

@@ -37,6 +37,7 @@ export function sendActiveSearch(object) {
     payload: object,
   };
 }
+
 export function getRecipeById(id) {
   return async function thunk(dispatch, getState) {
     try {
@@ -58,7 +59,6 @@ export function ratingRecipe(recipeId, rating) {
     const body = { recipeId, userId, rating };
     const token = getState().user.token;
     const headers = { Authorization: `Bearer ${token}` };
-
     try {
       const response = await axios.patch(`${apiUrl}/recipe/rating/`, body, {
         headers,
@@ -86,7 +86,6 @@ export function changeActiveSearch(name) {
     }
   };
 }
-
 export function sendChangeActiveSearch(array) {
   return {
     type: "changeActiveSearch/NEW",

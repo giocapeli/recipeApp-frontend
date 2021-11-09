@@ -17,7 +17,6 @@ export default function Homepage() {
   function searchIt(keywords) {
     dispatch(searchRecipes(keywords));
   }
-
   function resetState() {
     dispatch(clearState(true));
   }

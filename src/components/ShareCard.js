@@ -12,6 +12,7 @@ import { apiUrl } from "../config/constants";
 export default function ShareCard(props) {
   const shareUrl = `${apiUrl}/recipe/${props.id}`;
   const content = props.title;
+
   return (
     <div
       style={{

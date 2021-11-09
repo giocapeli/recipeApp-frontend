@@ -20,15 +20,7 @@ export default function user(state = initialState, action) {
         favorites: action.payload,
       };
     }
-    // case "addIngredient/CREATE": {
-    //   return {
-    //     ...state,
-    //     postRecipe: {
-    //       ...state.postRecipe,
-    //       ingredientList: [...state.postRecipe.ingredientList, action.payload],
-    //     },
-    //   };
-    // }
+
     case "ingredient/NEW": {
       return {
         ...state,
@@ -58,18 +50,7 @@ export default function user(state = initialState, action) {
         },
       };
     }
-    // case "deleteIngredient/DELETE": {
-    //   const newIngredientList = state.postRecipe.ingredientList.filter(
-    //     (e) => e.id !== action.payload
-    //   );
-    //   return {
-    //     ...state,
-    //     postRecipe: {
-    //       ...state.postRecipe,
-    //       ingredientList: newIngredientList,
-    //     },
-    //   };
-    // }
+
     case "LOGIN_SUCCESS": {
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };

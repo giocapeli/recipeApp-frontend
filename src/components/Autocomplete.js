@@ -5,7 +5,7 @@ export default function Autocomplete(props) {
   const [typed, set_typed] = useState("");
   const [suggestions, set_suggestions] = useState([]);
   const [selected, set_selected] = useState({});
-  const [autocomplete, set_autocomplete] = useState(false); //used to toogle
+  const [autocomplete, set_autocomplete] = useState(false); //used to toogle autocomplete
 
   useEffect(() => {
     if (typed !== "") {
@@ -16,7 +16,14 @@ export default function Autocomplete(props) {
     } else {
       set_suggestions([]);
     }
-  }, [typed]);
+  }, [typed, props.array]);
+
+  useEffect(() => {
+    props.action(selected);
+    set_typed("");
+    set_suggestions([]);
+    set_autocomplete(false);
+  }, [selected, props]);
 
   function clickOnElement(e) {
     if (e) {
@@ -27,12 +34,6 @@ export default function Autocomplete(props) {
     set_suggestions([]);
     set_autocomplete(true);
   }
-  useEffect(() => {
-    props.action(selected);
-    set_typed("");
-    set_suggestions([]);
-    set_autocomplete(false);
-  }, [selected]);
 
   return (
     <div style={{ position: "relative" }}>
