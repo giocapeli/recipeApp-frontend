@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchRecipes, clearState } from "../store/recipes/actions";
 import SearchForm from "../components/SearchForm";
@@ -30,19 +30,36 @@ export default function Homepage() {
       ) : (
         <div className="page">
           {searchKeywords.length ? (
-            <h1>
-              Here the results for {searchKeywords.map((e) => `[${e}] `)}:
+            <h1 style={{ display: "flex", justifyContent: "center" }}>
+              Here the results for{" "}
+              {searchKeywords.map((e) => (
+                <div className="match">{e}</div>
+              ))}
+              :
             </h1>
           ) : null}
           <div className="layout">
-            {searchResults.map((e) => (
-              <RecipeCard
-                id={e.id}
-                title={e.title}
-                ratings={e.ratings}
-                imageUrl={e.imageUrl}
-              />
-            ))}
+            {searchResults.map((e) =>
+              e.matches.length === searchKeywords.length ? (
+                <RecipeCard
+                  id={e.id}
+                  title={e.title}
+                  ratings={e.ratings}
+                  imageUrl={e.imageUrl}
+                  matches={e.matches}
+                  highlighted={true}
+                />
+              ) : (
+                <RecipeCard
+                  id={e.id}
+                  title={e.title}
+                  ratings={e.ratings}
+                  imageUrl={e.imageUrl}
+                  matches={e.matches}
+                  highlighted={false}
+                />
+              )
+            )}
             <button className="buttons" onClick={() => resetState()}>
               Search Again
             </button>

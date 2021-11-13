@@ -11,12 +11,17 @@ import {
 import RatingCard from "../components/RatingCard";
 import ShareCard from "../components/ShareCard";
 import Loading from "../components/Loading";
+import { selectUserOwner } from "../store/user/selectors";
+import { deleteRecipe } from "../store/user/actions";
+import { useHistory } from "react-router-dom";
 
 export default function Recipe() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipeData = useSelector(selectSelectedRecipe);
   const userHaveIngredients = useSelector(selectActiveSearch);
+  const owner = useSelector(selectUserOwner);
 
   useEffect(() => {
     dispatch(getRecipeById(id));
@@ -29,7 +34,16 @@ export default function Recipe() {
   if (!recipeData) {
     return <Loading />;
   }
+  let isOwner = [];
 
+  if (owner) {
+    isOwner = owner.filter((e) => e.id === parseInt(id));
+  }
+
+  function deleteIt() {
+    dispatch(deleteRecipe(id));
+    history.push(`/user`);
+  }
   return (
     <div className="layout page">
       <div className="column-1" style={{ width: "30%" }}>
@@ -60,7 +74,24 @@ export default function Recipe() {
       </div>
       <div className="column-2" style={{ width: "60%" }}>
         <div className="card">
-          <h1>{recipeData.title}</h1>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h1>{recipeData.title}</h1>
+            {isOwner.length ? (
+              <button
+                className="buttons"
+                style={{
+                  width: "50px",
+                  fontSize: "0.7em",
+                  padding: "2px",
+                  height: "25px",
+                  backgroundColor: "rgb(158, 18, 0)",
+                }}
+                onClick={() => deleteIt()}
+              >
+                delete
+              </button>
+            ) : null}
+          </div>
           <div className="img-container" style={{ height: "300px" }}>
             <img
               className="img"
