@@ -123,7 +123,7 @@ export function postRecipe(recipe, history) {
         "Recipe posted with success!",
         3000
       );
-      // dispatch(sendNewRecipeId(response.data.id));
+      dispatch(sendNewRecipe(response.data));
       dispatch(clearPostRecipe());
       console.log(response.data);
       history.push(`/recipe/${response.data.id}`);
@@ -176,6 +176,14 @@ export function sendDeleteRecipe(newOwner) {
   return {
     type: "recipe/DELETE",
     payload: newOwner,
+  };
+}
+export function sendNewRecipe(object) {
+  console.log(object);
+
+  return {
+    type: "postRecipe/NEW",
+    payload: { ...object, ratings: [] },
   };
 }
 export function clearPostRecipe() {

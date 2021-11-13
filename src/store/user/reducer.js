@@ -62,6 +62,12 @@ export default function user(state = initialState, action) {
         postRecipe: { ...initialState.postRecipe },
       };
     }
+    case "postRecipe/NEW": {
+      return {
+        ...state,
+        owner: [...state.owner, action.payload],
+      };
+    }
     case "LOGIN_SUCCESS": {
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };

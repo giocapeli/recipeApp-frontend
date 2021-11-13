@@ -30,8 +30,12 @@ export default function Homepage() {
       ) : (
         <div className="page">
           {searchKeywords.length ? (
-            <h1>
-              Here the results for {searchKeywords.map((e) => `[${e}] `)}:
+            <h1 style={{ display: "flex", justifyContent: "center" }}>
+              Here the results for{" "}
+              {searchKeywords.map((e) => (
+                <div className="match">{e}</div>
+              ))}
+              :
             </h1>
           ) : null}
           <div className="layout">

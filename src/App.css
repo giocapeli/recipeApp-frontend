@@ -27,17 +27,12 @@ font-family: 'Rancho', cursive; */
   height: 100%;
 }
 
-.searchButton {
-  border: 0px;
-  background-color: rgb(51, 141, 96);
-  color: white;
-}
-
 .ingredient-card {
   width: 100%;
 }
 
 .form-input,
+.searchButton,
 .side-button,
 .buttons,
 .ingredient-card {
@@ -109,6 +104,7 @@ font-family: 'Rancho', cursive; */
 .buttons,
 .resultCard,
 .side-button,
+.searchButton,
 .ingredient-card,
 .card,
 .ingredientsCard,
@@ -137,7 +133,8 @@ font-family: 'Rancho', cursive; */
 .buttons,
 .resultCard,
 .card,
-.ingredientsCard {
+.ingredientsCard,
+.searchButton {
   box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432);
 }
 /* Switch */
@@ -171,10 +168,12 @@ font-family: 'Rancho', cursive; */
   background-color: rgba(70, 70, 70, 0.685);
 }
 .resultCard {
-  flex-grow: 1;
-  flex-shrink: 1;
+  /* flex-grow: 1; */
+  /* flex-shrink: 1; */
   text-align: center;
   width: 300px;
+
+  /* max-width: 300px; */
   font-size: 14pt;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -245,8 +244,10 @@ font-family: 'Rancho', cursive; */
   background-color: rgb(221, 43, 19);
 }
 .side-button.green,
-.buttons {
-  background-color: rgb(65, 133, 57);
+.buttons,
+.searchButton,
+.match {
+  background-color: rgb(155, 196, 119);
 }
 
 .buttons,
@@ -331,12 +332,11 @@ a:active {
   padding-top: 100px;
 }
 .match {
-  background-color: rgb(181, 199, 165);
   color: white;
-  font-size: 0.8em;
   border-radius: 10px;
   padding: 3px 8px;
   margin: 5px;
+  font-family: "Nanum Pen Script", cursive;
 }
 .glow {
   /* border-radius: 50%; */
@@ -345,7 +345,7 @@ a:active {
   animation-name: glowing;
   animation-duration: 1s;
   animation-iteration-count: infinite;
-  margin: auto 40px;
+  margin: auto;
 }
 .resultCard:hover {
   transform: scale(1.05);
@@ -358,15 +358,15 @@ a:active {
       0 0 0px 0px yellow;
   }
   50% {
-    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432), 0 0 10px 10px white,
-      0 0 20px 20px yellow;
+    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432), 0 0 5px 5px white,
+      0 0 10px 10px yellow;
   }
   75% {
-    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432), 0 0 30px 30px white,
-      0 0 20px 20px yellow;
+    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432), 0 0 15px 15px white,
+      0 0 10px 10px yellow;
   }
   90% {
-    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432), 0 0 30px 30px white,
+    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.432), 0 0 15px 15px white,
       0 0 0px 0px yellow;
   }
   100% {
