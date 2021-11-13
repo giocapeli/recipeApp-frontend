@@ -50,6 +50,12 @@ export default function user(state = initialState, action) {
         },
       };
     }
+    case "recipe/DELETE": {
+      return {
+        ...state,
+        owner: action.payload,
+      };
+    }
     case "postRecipe/CLEAR": {
       return {
         ...state,

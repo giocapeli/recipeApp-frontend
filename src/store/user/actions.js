@@ -139,12 +139,45 @@ export function postRecipe(recipe, history) {
     }
   };
 }
-// export function sendNewRecipeId(id) {
-//   return {
-//     type: "newRecipeId/NEW",
-//     payload: id,
-//   };
-// }
+
+export function deleteRecipe(recipeId) {
+  return async function thunk(dispatch, getState) {
+    const userId = getState().user.id;
+    const token = getState().user.token;
+    const owner = getState().user.owner;
+    const headers = { Authorization: `Bearer ${token}` };
+    const body = {
+      userId,
+      recipeId,
+    };
+    try {
+      const response = await axios.post(`${apiUrl}/recipe/delete`, body, {
+        headers,
+      });
+      console.log(response.data);
+      const newOwner = owner.filter(
+        (e) => parseInt(e.id) !== parseInt(recipeId)
+      );
+      dispatch(sendDeleteRecipe(newOwner));
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+}
+export function sendDeleteRecipe(newOwner) {
+  console.log(newOwner);
+  return {
+    type: "recipe/DELETE",
+    payload: newOwner,
+  };
+}
 export function clearPostRecipe() {
   return {
     type: "postRecipe/CLEAR",
