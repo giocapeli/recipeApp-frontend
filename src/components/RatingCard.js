@@ -60,7 +60,11 @@ export default function RatingCard(props) {
               onChange={(event, newValue) => changingStars(event, newValue)}
             />
           ) : (
-            <Rating style={{ color: "#D5D7B9" }} value={stars} readOnly />
+            <Rating
+              style={{ color: "#D5D7B9", marginTop: "15px" }}
+              value={stars}
+              readOnly
+            />
           )
         ) : (
           <Rating value={stars} readOnly />
@@ -70,7 +74,11 @@ export default function RatingCard(props) {
         </span>
         {token && !owner.length ? (
           <Rating
-            style={{ color: "red", marginLeft: "10px", fontSize: "2em" }}
+            style={{
+              color: "red",
+              marginLeft: "10px",
+              fontSize: "2em",
+            }}
             value={favorite}
             max={1}
             icon={"♥"}

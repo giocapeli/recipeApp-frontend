@@ -24,7 +24,7 @@ export default function UserPage() {
   return (
     <div style={{ textAlign: "center" }} className="page">
       <h1 className="title">{user.name}'s Page</h1>
-      <div className="resultBoard">
+      <div>
         <div className="ingredientsCard">
           <h2
             style={{ marginBottom: "25px" }}
@@ -37,18 +37,22 @@ export default function UserPage() {
           >
             My Favorites
           </h2>
-          {toggleMenu.favorites
-            ? user.favorites.map((e) => (
-                <div style={{ marginBottom: "20px" }}>
-                  <RecipeCard
-                    id={e.id}
-                    title={e.title}
-                    ratings={e.ratings}
-                    imageUrl={e.imageUrl}
-                  />
-                </div>
-              ))
-            : null}
+          <div className="layout">
+            {toggleMenu.favorites
+              ? user.favorites.map((e) => (
+                  <div style={{ margin: "10px auto" }}>
+                    <RecipeCard
+                      id={e.id}
+                      title={e.title}
+                      ratings={e.ratings}
+                      imageUrl={e.imageUrl}
+                      matches={[]}
+                      highlighted={false}
+                    />
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
         <div className="ingredientsCard">
           <h2
@@ -62,18 +66,22 @@ export default function UserPage() {
           >
             My Recipes
           </h2>
-          {toggleMenu.my
-            ? user.owner.map((e) => (
-                <div style={{ marginBottom: "20px" }}>
-                  <RecipeCard
-                    id={e.id}
-                    title={e.title}
-                    ratings={e.ratings}
-                    imageUrl={e.imageUrl}
-                  />
-                </div>
-              ))
-            : null}
+          <div className="layout">
+            {toggleMenu.my
+              ? user.owner.map((e) => (
+                  <div style={{ margin: "10px auto" }}>
+                    <RecipeCard
+                      id={e.id}
+                      title={e.title}
+                      ratings={e.ratings}
+                      imageUrl={e.imageUrl}
+                      matches={[]}
+                      highlighted={false}
+                    />
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
         <div className="ingredientsCard">
           <h2
@@ -87,18 +95,22 @@ export default function UserPage() {
           >
             My Ratings
           </h2>
-          {toggleMenu.ratings
-            ? user.ratings.map((e) => (
-                <div style={{ marginBottom: "20px" }}>
-                  <RecipeCard
-                    id={e.id}
-                    title={e.title}
-                    ratings={e.ratings}
-                    imageUrl={e.imageUrl}
-                  />
-                </div>
-              ))
-            : null}
+          <div className="layout">
+            {toggleMenu.ratings
+              ? user.ratings.map((e) => (
+                  <div style={{ margin: "10px auto" }}>
+                    <RecipeCard
+                      id={e.id}
+                      title={e.title}
+                      ratings={e.ratings}
+                      imageUrl={e.imageUrl}
+                      matches={[]}
+                      highlighted={false}
+                    />
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
       </div>
     </div>
