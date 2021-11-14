@@ -38,6 +38,15 @@ Supporting this goal I intend to:
 - Have a Database model of my MVP, considering future new features.
 - Keeping constants and organized commits using Github.
 
+## Usability:
+
+![Search](https://i.postimg.cc/4yy56DD3/search1.gif "Search")
+![Select](https://i.postimg.cc/FFwWbRK5/selectrecipe1.gif "Select Recipe")
+![Login](https://i.postimg.cc/Bv3RTvMQ/login.gif "Login")
+![Create](https://i.postimg.cc/3RY4Q295/createrecipe01.gif "Create Recipe")
+
+
+
 ## User Stories
 
 #### A - As a User, I want to:
