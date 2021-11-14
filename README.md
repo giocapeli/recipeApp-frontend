@@ -49,8 +49,9 @@ Supporting this goal I intend to:
 
 #### A - As a User, I want to:
 
-- Fill a form with some ingredients I have in my pantry/fridge and get suggestions of recipes that use that ingredient.
+- Fill a form with some ingredients I have in my pantry/fridge and get suggestions of recipes that use that ingredient, sorted by number of matches.
 - Select one recipe and get a full list of ingredients.
+- Be able to check more ingredients that I also have on the list.
 - I also receive the complete recipe that I can share / print.
 
 #### B - As a logged User, I want to:
