@@ -12,21 +12,13 @@ Did you discover a new recipe that opened your eyes to a new world of flavors, a
 
 With **WhatShouldICook?** you can also favorite and rate the meals you have done and share your recipe with the community.
 
-## Technologies used
+## Technologies used: 
 
-### Frontend:
+### Frontend: 
+React, Redux, Axios
 
-- React
-- Redux
-- Axios
-
-### Backend:
-
-- Express
-- REST
-- Sequelize
-- Postgres
-- NodeJS
+### Backend: 
+Express, REST, Sequelize, Postgres, NodeJS
 
 ## Goals
 
@@ -40,10 +32,10 @@ Supporting this goal I intend to:
 
 ## Usability:
 
-![Search](https://i.postimg.cc/4yy56DD3/search1.gif "Search")
-![Select](https://i.postimg.cc/FFwWbRK5/selectrecipe1.gif "Select Recipe")
-![Login](https://i.postimg.cc/Bv3RTvMQ/login.gif "Login")
-![Create](https://i.postimg.cc/3RY4Q295/createrecipe01.gif "Create Recipe")
+![Search](https://i.ibb.co/VxxKYhh/search1.gif "Search")
+![Select](https://i.ibb.co/XtjJ9MS/selectrecipe1.gif "Select Recipe")
+![Login](https://i.ibb.co/fvh5Wwb/login.gif "Login")
+![Create](https://i.ibb.co/c1dyqxW/createrecipe01.gif "Create Recipe")
 
 
 
