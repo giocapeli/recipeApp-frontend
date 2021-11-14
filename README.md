@@ -12,7 +12,7 @@
 
 Do you have something in your fridge that is close to expiring, and you don't want to waste it, but you are out of ideas of how to cook it?
 Is your pantry full, but you are still struggling to decide what to eat and are afraid to end having the same soup as every day?
-Did you discover a new recipe that opened your eyes to a new worhttps://i.ibb.co/TMpHvJh/use2.gifld of flavors, and, as a generous person, you want to share it with everyone?
+Did you discover a new recipe that opened your eyes to a new world of flavors, and, as a generous person, you want to share it with everyone?
 
 **WhatShouldICook?** is a web app that is going to help you to solve all those situations. With **WhatShouldICook?** you can search recipes by ingredients and receive suggestions of how to give good use to that ingredient that is standing in your fridge or pantry for days or weeks.
 
