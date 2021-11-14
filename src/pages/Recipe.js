@@ -13,7 +13,7 @@ import ShareCard from "../components/ShareCard";
 import Loading from "../components/Loading";
 import { selectUserOwner } from "../store/user/selectors";
 import { deleteRecipe } from "../store/user/actions";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Recipe() {
   const history = useHistory();
@@ -71,6 +71,9 @@ export default function Recipe() {
             <ShareCard title={recipeData.title} id={id} />
           </div>
         </div>
+        <Link to="/search" className="buttons">
+          Back to results
+        </Link>
       </div>
       <div className="column-2" style={{ width: "60%" }}>
         <div className="card">

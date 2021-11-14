@@ -28,7 +28,7 @@ export default function SignUp() {
     setPassword("");
   }
   return (
-    <Form as={Col} md={{ span: 6, offset: 3 }} className="page">
+    <form className="page" style={{ maxWidth: "700px" }}>
       <h1 className="title">Login</h1>
       <form>
         <input
@@ -54,6 +54,6 @@ export default function SignUp() {
       <Link to="/signup" style={{ textAlign: "center", color: "blue" }}>
         Click here to sign up
       </Link>
-    </Form>
+    </form>
   );
 }
