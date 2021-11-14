@@ -16,6 +16,7 @@ import PostRecipe from "./pages/PostRecipe";
 import Loading from "./components/Loading";
 import Layout from "./pages/Layout";
 import Navbar from "./components/Navigation/Navbar";
+import Search from "./pages/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/user" component={UserPage} />
         <Route path="/newrecipe" component={PostRecipe} />
         <Route path="/layout" component={Layout} />
+        <Route path="/search" component={Search} />
       </Switch>
       <MessageBox />
     </div>

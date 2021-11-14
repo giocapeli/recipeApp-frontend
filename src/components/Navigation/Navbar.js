@@ -37,7 +37,9 @@ export default function Menu() {
     <div className="my-navbar">
       {!show ? (
         <Link to="/" onClick={() => resetState()} className="link">
-          <div style={{ flexGrow: "1" }}>WhatShouldICook?</div>
+          <div style={{ flexGrow: "1", color: "rgb(221, 221, 221)" }}>
+            WhatShouldICook?
+          </div>
         </Link>
       ) : null}
       <div>
@@ -77,7 +79,7 @@ export default function Menu() {
         {token ? (
           <Link to="/login">
             <h1
-              style={{ color: "rgb(158, 18, 0)", fontWeight: "500" }}
+              style={{ fontWeight: "500" }}
               className={`navbar-link ${menu}`}
               onClick={() => {
                 logout();

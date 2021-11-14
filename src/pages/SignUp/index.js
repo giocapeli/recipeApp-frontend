@@ -33,40 +33,39 @@ export default function SignUp() {
   }
 
   return (
-    <Container className="page">
-      <form>
-        <h1 className="title">Signup</h1>
-        <input
-          className="form-input"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          type="text"
-          placeholder="Enter name"
-          required
-        />
-        <input
-          className="form-input"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          type="email"
-          placeholder="Enter email"
-          required
-        />
-        <input
-          className="form-input"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          type="password"
-          placeholder="Password"
-          required
-        />
-        <button className="buttons" type="submit" onClick={submitForm}>
-          Sign up
-        </button>
-        <Link to="/login" style={{ textAlign: "center", color: "blue" }}>
-          Click here to log in
-        </Link>
-      </form>
-    </Container>
+    <form className="page" style={{ maxWidth: "700px" }}>
+      <h1 className="title">Signup</h1>
+      <input
+        className="form-input"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+        type="text"
+        placeholder="Enter name"
+        required
+      />
+      <input
+        className="form-input"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+        type="email"
+        placeholder="Enter email"
+        required
+      />
+      <input
+        className="form-input"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+        type="password"
+        placeholder="Password"
+        required
+      />
+      <button className="buttons" type="submit" onClick={submitForm}>
+        Sign up
+      </button>
+
+      <Link to="/login" style={{ textAlign: "center", color: "blue" }}>
+        Click here to login
+      </Link>
+    </form>
   );
 }

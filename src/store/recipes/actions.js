@@ -10,6 +10,9 @@ export function clearState(bool) {
 }
 
 export function searchRecipes(array) {
+  if (array.length === 0) {
+    return;
+  }
   return async function thunk(dispatch, getState) {
     const body = { ingredients: array };
     try {

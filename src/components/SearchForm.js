@@ -1,10 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchRecipes } from "../store/recipes/actions";
+import { useHistory } from "react-router";
 
-export default function SearchForm(props) {
-  const { searchIt } = props;
+export default function SearchForm() {
+  const history = useHistory();
+
   const [keywords, set_keywords] = useState("");
-
+  const dispatch = useDispatch();
   function sendResults(event) {
     event.preventDefault();
     if (keywords === "") {
@@ -12,10 +16,13 @@ export default function SearchForm(props) {
     }
     searchIt(keywords);
     set_keywords("");
+    history.push("/search");
   }
-
+  function searchIt(keywords) {
+    dispatch(searchRecipes(keywords));
+  }
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <form onSubmit={sendResults}>
         <h1 className="pageTitle">What I have in my fridge:</h1>
         <div>

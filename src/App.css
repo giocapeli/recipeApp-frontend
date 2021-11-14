@@ -11,6 +11,7 @@ font-family: 'Rancho', cursive; */
 
 .pageTitle {
   color: rgb(77, 77, 77);
+  font-size: 2.6em;
 }
 
 .resultBoard {
@@ -19,13 +20,13 @@ font-family: 'Rancho', cursive; */
   /* justify-content: center; */
 }
 
-.ingredientsCard {
+/* .ingredientsCard {
   text-align: center;
   padding: 20px;
   margin: 20px;
   min-width: 350px;
   height: 100%;
-}
+} */
 
 .ingredient-card {
   width: 100%;
@@ -69,6 +70,9 @@ font-family: 'Rancho', cursive; */
   padding: 15px;
 }
 .centered {
+  max-width: 600px;
+  padding: 30px;
+  width: 100%;
   text-align: center;
   position: fixed;
   top: 50%;
@@ -330,6 +334,9 @@ a:active {
 }
 .page {
   padding-top: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: auto;
 }
 .match {
   color: white;
@@ -345,7 +352,7 @@ a:active {
   animation-name: glowing;
   animation-duration: 1s;
   animation-iteration-count: infinite;
-  margin: auto;
+  /* margin: auto; */
 }
 .resultCard:hover {
   transform: scale(1.05);
@@ -382,4 +389,7 @@ a:active {
 }
 .form-input:required {
   background-color: rgb(255, 255, 255);
+}
+.buttons:hover {
+  color: rgb(255, 255, 255);
 }
