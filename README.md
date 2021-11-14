@@ -1,7 +1,7 @@
 
 # WhatShouldICook?
 
-<img align="right" src="https://i.ibb.co/TMpHvJh/use2.gif">
+<img align="right" src="https://i.ibb.co/jg6ddKm/usesmall.gif">
 
 # Frontend
 
