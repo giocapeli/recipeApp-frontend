@@ -27,10 +27,6 @@ export default function Recipe() {
     dispatch(getRecipeById(id));
   }, []);
 
-  function print() {
-    window.print();
-  }
-
   if (!recipeData) {
     return <Loading />;
   }
@@ -65,9 +61,6 @@ export default function Recipe() {
             )
           )}
           <div>
-            <button className="buttons" onClick={() => print()}>
-              Print
-            </button>
             <ShareCard title={recipeData.title} id={id} />
           </div>
         </div>

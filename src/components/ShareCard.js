@@ -8,10 +8,19 @@ import {
   WhatsappShareButton,
 } from "react-share";
 import { apiUrl } from "../config/constants";
+import { useSelector } from "react-redux";
+import { selectSelectedRecipe } from "../store/recipes/selectors";
 
 export default function ShareCard(props) {
-  const shareUrl = `${apiUrl}/recipe/${props.id}`;
-  const content = props.title;
+  const shareUrl = `https://whatshouldicook.netlify.app/recipe/${props.id}`;
+  const ingredients = useSelector(selectSelectedRecipe).ingredients.map(
+    (e) =>
+      ` ${e.recipe_ingredients.quantity}${e.recipe_ingredients.unitOfMeasure} of ${e.name}`
+  );
+  const content = props.title + `: ` + ingredients;
+  function print() {
+    window.print();
+  }
 
   return (
     <div
@@ -31,6 +40,8 @@ export default function ShareCard(props) {
       <WhatsappShareButton url={shareUrl} title={content} separator=": ">
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
+
+      <h3 onClick={() => print()}>🖨️</h3>
     </div>
   );
 }

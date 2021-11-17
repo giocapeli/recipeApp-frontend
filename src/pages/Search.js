@@ -43,7 +43,12 @@ export default function Search() {
             ))}
             :
           </h1>
-        ) : null}
+        ) : (
+          <h2>
+            Sorry, I couldn't find anything with your criteria. Try a different
+            ingredient.
+          </h2>
+        )}
         <div className="layout">
           {searchResults.map((e) =>
             e.matches.length === searchKeywords.length ? (
