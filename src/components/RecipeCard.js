@@ -27,7 +27,13 @@ export default function RecipeCard(props) {
         <div className="img-container" style={{ height: "300px" }}>
           <img className="img" alt={title} src={imageUrl} />
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           {matches.map((e) => (
             <div className="match">{e}</div>
           ))}
