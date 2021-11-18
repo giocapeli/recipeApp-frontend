@@ -18,6 +18,8 @@ Did you discover a new recipe that opened your eyes to a new world of flavors, a
 
 With **WhatShouldICook?** you can also favorite and rate the meals you have done and share your recipe with the community.
 
+[Check it out the MVP](https://whatshouldicook.netlify.app/)
+
 ## Technologies used: 
 
 ### Frontend: 
@@ -66,6 +68,8 @@ Supporting this goal I intend to:
 - Receive suggestions from different sources besides the community Recipe Database.
 
 ## Links
+### MVP:
+[Link to WhatShouldICook](https://whatshouldicook.netlify.app/)
 
 ### Wireframe:
 
